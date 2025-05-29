@@ -49,7 +49,7 @@ const CharacterSelect = () => {
       { name: 'Ganyu', image: '/images/characters/Ganyu.jpg', isAdult: false },
       { name: 'Jean Gunnhildr', image: '/images/characters/jean.jpg', isAdult: false },
       { name: 'Dehya', image: '/images/characters/Dehya.jpg', isAdult: false },
-      { name: 'Yehlan', image: '/images/characters/yehlan.jpg', isAdult: false },
+      { name: 'Yehlan', image: '/images/characters/yelan.jpg', isAdult: false },
       { name: 'Keqing', image: '/images/characters/Keqing.jpg', isAdult: false },
       { name: 'Candace', image: '/images/characters/candace.jpg', isAdult: false },
       { name: 'Lisa Minci', image: '/images/characters/lisa.jpg', isAdult: false },
@@ -77,7 +77,7 @@ const CharacterSelect = () => {
       { name: 'Yuri', image: '/images/characters/yuri.jpg', isAdult: false },
       { name: 'Miku', image: '/images/characters/miku.jpg', isAdult: false },
       { name: 'Lala Satalin Deviluke', image: '/images/characters/lala.jpg', isAdult: false },
-      { name: 'Nagatoru Hayase', image: '/images/characters/nagatoru.jpg', isAdult: false },
+      { name: 'Nagatoru Hayase', image: '/images/characters/nagatoro.jpg', isAdult: false },
       { name: 'Bulma', image: '/images/characters/bulma.jpg', isAdult: false },
       { name: 'Inui Sajuna', image: '/images/characters/inui.jpg', isAdult: false },
       { name: 'Mitsuri Kanroji', image: '/images/characters/mits.jpg', isAdult: false },
@@ -197,11 +197,7 @@ const CharacterSelect = () => {
                 <img
                   src={character.image}
                   alt={character.name}
-                  className="w-16 h-16 object-cover rounded-lg"
-                  onError={(e) => {
-    console.error(`Failed to load image: ${character.image}`);
-    e.target.src = '/images/fallback-image.jpg';
-  }}
+                  className="w-16 h-16 object-cover rounded-lg"                   
                 />
                 <h2 className="text-white text-base font-bold leading-tight">{character.name}</h2>
                 {character.isAdult && (
