@@ -198,7 +198,6 @@ const CharacterSelect = () => {
                   src={character.image}
                   alt={character.name}
                   className="w-16 h-16 object-cover rounded-lg"
-                  loading="lazy"
                   onError={(e) => {
     console.error(`Failed to load image: ${character.image}`);
     e.target.src = '/images/fallback-image.jpg';
