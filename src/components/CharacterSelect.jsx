@@ -1,94 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import sakuraImage from '../assets/images/characters/sakura.jpg';
-import hinataImage from '../assets/images/characters/hinata.jpg';
-import tsunadeImage from '../assets/images/characters/tsunade.jpg';
-import inoImage from '../assets/images/characters/ino.jpg';
-import tamariImage from '../assets/images/characters/tamari.jpg';
-import konanImage from '../assets/images/characters/Konan.jpg';
-import rukiaImage from '../assets/images/characters/Rukia.jpg';
-import rangikuImage from '../assets/images/characters/Rangiku.jpg';
-import yoruichiImage from '../assets/images/characters/Yoruichi.jpg';
-import orihimeImage from '../assets/images/characters/Orihime.jpg';
-import boaImage from '../assets/images/characters/Boa.jpg';
-import namiImage from '../assets/images/characters/nami.jpg';
-import nicoImage from '../assets/images/characters/nico.jpg';
-import erzaImage from '../assets/images/characters/Erza.jpg';
-import lucyImage from '../assets/images/characters/lucy.jpg';
-import juviaImage from '../assets/images/characters/juvia.jpg';
-import mirajaneImage from '../assets/images/characters/mirajane.jpg';
-import peggImage from '../assets/images/characters/pegg.jpg';
-import ningImage from '../assets/images/characters/ning.jpg';
-import beidouImage from '../assets/images/characters/Beidou.jpg';
-import ganyuImage from '../assets/images/characters/Ganyu.jpg';
-import jeanImage from '../assets/images/characters/jean.jpg';
-import dehyaImage from '../assets/images/characters/Dehya.jpg';
-import yelanImage from '../assets/images/characters/yelan.jpg';
-import keqingImage from '../assets/images/characters/keqing.jpg';
-import candaceImage from '../assets/images/characters/candace.jpg';
-import lisaImage from '../assets/images/characters/lisa.jpg';
-import rozariaImage from '../assets/images/characters/rozaria.jpg';
-import shenheImage from '../assets/images/characters/shenhe.jpg';
-import yaeImage from '../assets/images/characters/yae.jpg';
-import raidenImage from '../assets/images/characters/raiden.jpg';
-import xinImage from '../assets/images/characters/xin.jpg';
-import furinaImage from '../assets/images/characters/furina.jpg';
-import huImage from '../assets/images/characters/hu.jpg';
-import remImage from '../assets/images/characters/rem.jpg';
-import mikasaImage from '../assets/images/characters/mikasa.jpg';
-import powerImage from '../assets/images/characters/power.jpg';
-import zeroImage from '../assets/images/characters/zero.jpg';
-import frierenImage from '../assets/images/characters/frieren.jpg';
-import fernImage from '../assets/images/characters/fern.jpg';
-import saberImage from '../assets/images/characters/saber.jpg';
-import asunaImage from '../assets/images/characters/asuna.jpg';
-import zeldaImage from '../assets/images/characters/zelda.jpg';
-import yorImage from '../assets/images/characters/yor.jpg';
-import nezukoImage from '../assets/images/characters/nezuko.jpg';
-import sailorImage from '../assets/images/characters/sailor.jpg';
-import yuriImage from '../assets/images/characters/yuri.jpg';
-import mikuImage from '../assets/images/characters/miku.jpg';
-import lalaImage from '../assets/images/characters/lala.jpg';
-import nagataroImage from '../assets/images/characters/nagatoro.jpg';
-import bulmaImage from '../assets/images/characters/bulma.jpg';
-import inuiImage from '../assets/images/characters/inui.jpg';
-import mitsImage from '../assets/images/characters/mits.jpg';
-import darkImage from '../assets/images/characters/dark.jpg';
-import aquaImage from '../assets/images/characters/aqua.jpg';
-import ezdImage from '../assets/images/characters/ezd.jpg';
-import tatsumakiImage from '../assets/images/characters/tatsumaki.jpg';
-import sorakaImage from '../assets/images/characters/soraka.jpg';
-import bImage from '../assets/images/characters/2b.jpg';
-import chunliImage from '../assets/images/characters/chunli.jpg';
-import reiImage from '../assets/images/characters/rei.jpg';
-import sonaImage from '../assets/images/characters/sona.jpg';
-import nidaleeImage from '../assets/images/characters/nidalee.jpg';
-import ahriImage from '../assets/images/characters/ahri.jpg';
-import erinaImage from '../assets/images/characters/erina.jpg';
-import erisImage from '../assets/images/characters/eris.jpg';
-import nonaImage from '../assets/images/characters/nona.jpg';
-import jinxImage from '../assets/images/characters/jinx.jpg';
-import albedoImage from '../assets/images/characters/albedo.jpg';
-import rinImage from '../assets/images/characters/rin.jpg';
-import girlImage from '../assets/images/characters/girl.jpg';
-import womenImage from '../assets/images/characters/women.jpg';
-import milfImage from '../assets/images/characters/milf.jpg';
-import demonImage from '../assets/images/characters/demon.jpg';
-import monsterImage from '../assets/images/characters/monster.jpg';
-import goblinImage from '../assets/images/characters/goblin.jpg';
-import orcImage from '../assets/images/characters/orc.jpg';
-import elfImage from '../assets/images/characters/elf.jpg';
-import boyImage from '../assets/images/characters/boy.jpg';
-import catgirlImage from '../assets/images/characters/catgirl.jpg';
-import manImage from '../assets/images/characters/man.jpg';
-import werewolfImage from '../assets/images/characters/werewolf.jpg';
-import minotaurImage from '../assets/images/characters/minotaur.jpg';
-import momImage from '../assets/images/characters/mom.jpg';
-import sonImage from '../assets/images/characters/son.jpg';
-import succubusImage from '../assets/images/characters/succubus.jpg';
-import tentaclesImage from '../assets/images/characters/tentacles.jpg';
-import tomboyImage from '../assets/images/characters/tomboy.jpg';
-import futaImage from '../assets/images/characters/futa.jpg';
+
 
 const CharacterSelect = () => {
   const navigate = useNavigate();
@@ -100,113 +12,113 @@ const CharacterSelect = () => {
   const [customPrompt, setCustomPrompt] = useState('');
   const [showPromptModal, setShowPromptModal] = useState(false);
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
-  const isSubscribed = false; // Replace with actual subscription check
+  const isSubscribed = false;
 
   console.log('CharacterSelect Params:', { anime, selectedCharacters, incomingPrompts });
 
   const charactersByAnime = {
     naruto: [
-      { name: 'Sakura Haruno', image: sakuraImage, isAdult: false },
-      { name: 'Hyuuga Hinata', image: hinataImage, isAdult: false },
-      { name: 'Tsunade', image: tsunadeImage, isAdult: false },
-      { name: 'Yamanaka Ino', image: inoImage, isAdult: false },
-      { name: 'Nara Temari', image: tamariImage, isAdult: false },
-      { name: 'Konan', image: konanImage, isAdult: false },
+      { name: 'Sakura Haruno', image: '/images/characters/sakura.jpg' },
+      { name: 'Hyuuga Hinata', image: '/images/characters/hinata.jpg' },
+      { name: 'Tsunade', image: '/images/characters/tsunade.jpg', isAdult: false },
+      { name: 'Yamanaka Ino', image: '/images/characters/ino.jpg', isAdult: false },
+      { name: 'Nara Temari', image: '/images/characters/tamari.jpg', isAdult: false },
+      { name: 'Konan', image: '/images/characters/Konan.jpg', isAdult: false },
     ],
     bleach: [
-      { name: 'Rukia Kuchiki', image: rukiaImage, isAdult: false },
-      { name: 'Orihime Inoue', image: orihimeImage, isAdult: false },
-      { name: 'Rangiku Matsumoto', image: rangikuImage, isAdult: false },
-      { name: 'Yoruichi Shihouin', image: yoruichiImage, isAdult: false },
+      { name: 'Rukia Kuchiki', image: '/images/characters/Rukia.jpg', isAdult: false },
+      { name: 'Orihime Inoue', image: '/images/characters/Orihime.jpg', isAdult: false },
+      { name: 'Rangiku Matsumoto', image: '/images/characters/Rangiku.jpg', isAdult: false },
+      { name: 'Yoruichi Shihouin', image: '/images/characters/Yoruichi.jpg', isAdult: false },
     ],
     onepiece: [
-      { name: 'Boa Hancock', image: boaImage, isAdult: false },
-      { name: 'Nami', image: namiImage, isAdult: false },
-      { name: 'Nico Robin', image: nicoImage, isAdult: false },
+      { name: 'Boa Hancock', image: '/images/characters/Boa.jpg', isAdult: false },
+      { name: 'Nami', image: '/images/characters/nami.jpg', isAdult: false },
+      { name: 'Nico Robin', image: '/images/characters/nico.jpg', isAdult: false },
     ],
     fairytail: [
-      { name: 'Erza Scarlet', image: erzaImage, isAdult: false },
-      { name: 'Lucy Heartfilia', image: lucyImage, isAdult: false },
-      { name: 'Juvia Lockser', image: juviaImage, isAdult: false },
-      { name: 'Mirajane Strauss', image: mirajaneImage, isAdult: false },
+      { name: 'Erza Scarlet', image: '/images/characters/Erza.jpg', isAdult: false },
+      { name: 'Lucy Heartfilia', image: '/images/characters/lucy.jpg', isAdult: false },
+      { name: 'Juvia Lockser', image: '/images/characters/juvia.jpg', isAdult: false },
+      { name: 'Mirajane Strauss', image: '/images/characters/mirajane.jpg', isAdult: false },
     ],
     genshin: [
-      { name: 'Barbara Pegg', image: peggImage, isAdult: false },
-      { name: 'Ningguang', image: ningImage, isAdult: false },
-      { name: 'Beidou', image: beidouImage, isAdult: false },
-      { name: 'Ganyu', image: ganyuImage, isAdult: false },
-      { name: 'Jean Gunnhildr', image: jeanImage, isAdult: false },
-      { name: 'Dehya', image: dehyaImage, isAdult: false },
-      { name: 'Yelan', image: yelanImage, isAdult: false },
-      { name: 'Keqing', image: keqingImage, isAdult: false },
-      { name: 'Candace', image: candaceImage, isAdult: false },
-      { name: 'Lisa Minci', image: lisaImage, isAdult: false },
-      { name: 'Rozaria', image: rozariaImage, isAdult: false },
-      { name: 'Shenhe', image: shenheImage, isAdult: false },
-      { name: 'Yae Miko', image: yaeImage, isAdult: false },
-      { name: 'Raiden', image: raidenImage, isAdult: false },
-      { name: 'Xinyan', image: xinImage, isAdult: false },
-      { name: 'Furina', image: furinaImage, isAdult: false },
-      { name: 'Hu Tao', image: huImage, isAdult: false },
+      { name: 'Barbara Pegg', image: '/images/characters/pegg.jpg', isAdult: false },
+      { name: 'Ningguang', image: '/images/characters/ning.jpg', isAdult: false },
+      { name: 'Beidou', image: '/images/characters/Beidou.jpg', isAdult: false },
+      { name: 'Ganyu', image: '/images/characters/Ganyu.jpg', isAdult: false },
+      { name: 'Jean Gunnhildr', image: '/images/characters/jean.jpg', isAdult: false },
+      { name: 'Dehya', image: '/images/characters/Dehya.jpg', isAdult: false },
+      { name: 'Yehlan', image: '/images/characters/yehlan.jpg', isAdult: false },
+      { name: 'Keqing', image: '/images/characters/Keqing.jpg', isAdult: false },
+      { name: 'Candace', image: '/images/characters/candace.jpg', isAdult: false },
+      { name: 'Lisa Minci', image: '/images/characters/lisa.jpg', isAdult: false },
+      { name: 'Rozaria', image: '/images/characters/rozaria.jpg', isAdult: false },
+      { name: 'Shenhe', image: '/images/characters/shenhe.jpg', isAdult: false },
+      { name: 'Yae Miko', image: '/images/characters/yae.jpg', isAdult: false },
+      { name: 'Raiden', image: '/images/characters/raiden.jpg', isAdult: false },
+      { name: 'Xinyan', image: '/images/characters/xin.jpg', isAdult: false },
+      { name: 'Furina', image: '/images/characters/furina.jpg', isAdult: false },
+      { name: 'Hu Tao', image: '/images/characters/hu.jpg', isAdult: false },
     ],
     other: [
-      { name: 'Rem', image: remImage, isAdult: false },
-      { name: 'Mikasa Ackerman', image: mikasaImage, isAdult: false },
-      { name: 'Power', image: powerImage, isAdult: false },
-      { name: 'Zero Two', image: zeroImage, isAdult: false },
-      { name: 'Frieren', image: frierenImage, isAdult: false },
-      { name: 'Fern', image: fernImage, isAdult: false },
-      { name: 'Saber', image: saberImage, isAdult: false },
-      { name: 'Asuna', image: asunaImage, isAdult: false },
-      { name: 'Zelda', image: zeldaImage, isAdult: false },
-      { name: 'Yor Briar', image: yorImage, isAdult: false },
-      { name: 'Nezuko Kamado', image: nezukoImage, isAdult: false },
-      { name: 'Sailor Moon', image: sailorImage, isAdult: false },
-      { name: 'Yuri', image: yuriImage, isAdult: false },
-      { name: 'Miku', image: mikuImage, isAdult: false },
-      { name: 'Lala Satalin Deviluke', image: lalaImage, isAdult: false },
-      { name: 'Nagatoro Hayase', image: nagataroImage, isAdult: false },
-      { name: 'Bulma', image: bulmaImage, isAdult: false },
-      { name: 'Inui Sajuna', image: inuiImage, isAdult: false },
-      { name: 'Mitsuri Kanroji', image: mitsImage, isAdult: false },
-      { name: 'Darkness', image: darkImage, isAdult: false },
-      { name: 'Aqua', image: aquaImage, isAdult: false },
-      { name: 'Esdeath', image: ezdImage, isAdult: false },
-      { name: 'Tatsumaki', image: tatsumakiImage, isAdult: false },
-      { name: 'Soraka', image: sorakaImage, isAdult: false },
-      { name: '2B', image: bImage, isAdult: false },
-      { name: 'ChunLi', image: chunliImage, isAdult: false },
-      { name: 'Ayanami Rei', image: reiImage, isAdult: false },
-      { name: 'Sona', image: sonaImage, isAdult: false },
-      { name: 'Nidalee', image: nidaleeImage, isAdult: false },
-      { name: 'Ahri', image: ahriImage, isAdult: false },
-      { name: 'Erina Nakiri', image: erinaImage, isAdult: false },
-      { name: 'Eris Greyrat', image: erisImage, isAdult: false },
-      { name: 'Nonna', image: nonaImage, isAdult: false },
-      { name: 'Jinx', image: jinxImage, isAdult: false },
-      { name: 'Albedo', image: albedoImage, isAdult: false },
-      { name: 'Rin Tohsaka', image: rinImage, isAdult: false },
+      { name: 'Rem', image: '/images/characters/rem.jpg', isAdult: false },
+      { name: 'Mikasa Ackerman', image: '/images/characters/mikasa.jpg', isAdult: false },
+      { name: 'Power', image: '/images/characters/power.jpg', isAdult: false },
+      { name: 'Zero Two', image: '/images/characters/zero.jpg', isAdult: false },
+      { name: 'Frieren', image: '/images/characters/frieren.jpg', isAdult: false },
+      { name: 'Fern', image: '/images/characters/fern.jpg', isAdult: false },
+      { name: 'Saber', image: '/images/characters/saber.jpg', isAdult: false },
+      { name: 'Asuna', image: '/images/characters/asuna.jpg', isAdult: false },
+      { name: 'Zelda', image: '/images/characters/zelda.jpg', isAdult: false },
+      { name: 'Yor Briar', image: '/images/characters/yor.jpg', isAdult: false },
+      { name: 'Nezuko Kamado', image: '/images/characters/nezuko.jpg', isAdult: false },
+      { name: 'Sailor Moon', image: '/images/characters/sailor.jpg', isAdult: false },
+      { name: 'Yuri', image: '/images/characters/yuri.jpg', isAdult: false },
+      { name: 'Miku', image: '/images/characters/miku.jpg', isAdult: false },
+      { name: 'Lala Satalin Deviluke', image: '/images/characters/lala.jpg', isAdult: false },
+      { name: 'Nagatoru Hayase', image: '/images/characters/nagatoru.jpg', isAdult: false },
+      { name: 'Bulma', image: '/images/characters/bulma.jpg', isAdult: false },
+      { name: 'Inui Sajuna', image: '/images/characters/inui.jpg', isAdult: false },
+      { name: 'Mitsuri Kanroji', image: '/images/characters/mits.jpg', isAdult: false },
+      { name: 'Darkness', image: '/images/characters/dark.jpg', isAdult: false },
+      { name: 'Aqua', image: '/images/characters/aqua.jpg', isAdult: false },
+      { name: 'Esdeath', image: '/images/characters/ezd.jpg', isAdult: false },
+      { name: 'Tatsumaki', image: '/images/characters/tatsumaki.jpg', isAdult: false },
+      { name: 'Soraka', image: '/images/characters/soraka.jpg', isAdult: false },
+      { name: '2B', image: '/images/characters/2b.jpg', isAdult: false },
+      { name: 'ChunLi', image: '/images/characters/chunli.jpg', isAdult: false },
+      { name: 'Ayanami Rei', image: '/images/characters/rei.jpg', isAdult: false },
+      { name: 'Sona', image: '/images/characters/sona.jpg', isAdult: false },
+      { name: 'Nidalee', image: '/images/characters/nidalee.jpg', isAdult: false },
+      { name: 'Ahri', image: '/images/characters/ahri.jpg', isAdult: false },
+      { name: 'Erina Nakiri', image: '/images/characters/erina.jpg', isAdult: false },
+      { name: 'Eris Greyrat', image: '/images/characters/eris.jpg', isAdult: false },
+      { name: 'Nonna', image: '/images/characters/nona.jpg', isAdult: false },
+      { name: 'Jinx', image: '/images/characters/jinx.jpg', isAdult: false },
+      { name: 'Albedo', image: '/images/characters/albedo.jpg', isAdult: false },
+      { name: 'Rin Tohsaka', image: '/images/characters/rin.jpg', isAdult: false },
     ],
     general: [
-      { name: 'Girl', image: girlImage, isAdult: false },
-      { name: 'Woman', image: womenImage, isAdult: false },
-      { name: 'MILF', image: milfImage, isAdult: true },
-      { name: 'Demon', image: demonImage, isAdult: false },
-      { name: 'Monster', image: monsterImage, isAdult: false },
-      { name: 'Goblin', image: goblinImage, isAdult: false },
-      { name: 'Orc', image: orcImage, isAdult: false },
-      { name: 'Elf', image: elfImage, isAdult: false },
-      { name: 'Boy', image: boyImage, isAdult: false },
-      { name: 'Catgirl', image: catgirlImage, isAdult: false },
-      { name: 'Man', image: manImage, isAdult: false },
-      { name: 'Werewolf', image: werewolfImage, isAdult: false },
-      { name: 'Minotaur', image: minotaurImage, isAdult: false },
-      { name: 'Mom', image: momImage, isAdult: true },
-      { name: 'Son', image: sonImage, isAdult: true },
-      { name: 'Succubus', image: succubusImage, isAdult: true },
-      { name: 'Tentacles', image: tentaclesImage, isAdult: true },
-      { name: 'Futanari', image: futaImage, isAdult: true },
-      { name: 'Tomboy', image: tomboyImage, isAdult: true },
+      { name: 'Girl', image: '/images/characters/girl.jpg', isAdult: false },
+      { name: 'Women', image: '/images/characters/women.jpg', isAdult: false },
+      { name: 'MILF', image: '/images/characters/milf.jpg', isAdult: true },
+      { name: 'Demon', image: '/images/characters/demon.jpg', isAdult: false },
+      { name: 'Monster', image: '/images/characters/monster.jpg', isAdult: false },
+      { name: 'Goblin', image: '/images/characters/goblin.jpg', isAdult: false },
+      { name: 'Orc', image: '/images/characters/orc.jpg', isAdult: false },
+      { name: 'Elf', image: '/images/characters/elf.jpg', isAdult: false },
+      { name: 'Boy', image: '/images/characters/boy.jpg', isAdult: false },
+      { name: 'Catgirl', image: '/images/characters/catgirl.jpg', isAdult: false },
+      { name: 'Man', image: '/images/characters/man.jpg', isAdult: false },
+      { name: 'Werewolf', image: '/images/characters/werewolf.jpg', isAdult: false },
+      { name: 'Minotaur', image: '/images/characters/minotaur.jpg', isAdult: false },
+      { name: 'Mom', image: '/images/characters/mom.jpg', isAdult: true },
+      { name: 'Son', image: '/images/characters/son.jpg', isAdult: true },
+      { name: 'Succubus', image: '/images/characters/succubus.jpg', isAdult: true },
+      { name: 'Tentacles', image: '/images/characters/tentacles.jpg', isAdult: true },
+      { name: 'Tomboy', image: '/images/characters/tomboy.jpg', isAdult: true },
+      { name: 'Futa', image: '/images/characters/futa.jpg', isAdult: true },
     ],
   };
 
@@ -287,6 +199,10 @@ const CharacterSelect = () => {
                   alt={character.name}
                   className="w-16 h-16 object-cover rounded-lg"
                   loading="lazy"
+                  onError={(e) => {
+    console.error(`Failed to load image: ${character.image}`);
+    e.target.src = '/images/fallback-image.jpg';
+  }}
                 />
                 <h2 className="text-white text-base font-bold leading-tight">{character.name}</h2>
                 {character.isAdult && (

@@ -1,20 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import cityImage from '../assets/images/backgrounds/city.jpg';
-import schoolImage from '../assets/images/backgrounds/school.jpg';
-import beachImage from '../assets/images/backgrounds/beach.jpg';
-import forestImage from '../assets/images/backgrounds/forest.jpg';
-import hotspringsImage from '../assets/images/backgrounds/hot_springs.jpg';
-import cafeImage from '../assets/images/backgrounds/cafe.jpg';
-import waterfallImage from '../assets/images/backgrounds/waterfall.jpg';
-import japanesehouseImage from '../assets/images/backgrounds/Japanese_house.jpg';
-import streetImage from '../assets/images/backgrounds/street.jpg';
-import dungeonImage from '../assets/images/backgrounds/dungeon.jpg';
-import saunaImage from '../assets/images/backgrounds/sauna.jpg';
-import poolImage from '../assets/images/backgrounds/pool.jpg';
-import bedroomImage from '../assets/images/backgrounds/bedroom.jpg';
-import bathroomImage from '../assets/images/backgrounds/bathroom.jpg';
-import islandImage from '../assets/images/backgrounds/island.jpg';
+
 
 const BackgroundSelect = () => {
   const navigate = useNavigate();
@@ -31,26 +17,26 @@ const BackgroundSelect = () => {
   const [customPrompt, setCustomPrompt] = useState('');
   const [showPromptModal, setShowPromptModal] = useState(false);
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
-  const isSubscribed = false; // Замените на реальную проверку подписки
+  const isSubscribed = false;
 
   console.log('BackgroundSelect Params:', { anime, characters, costumes, poses, emotions, nsfw, incomingPrompts, selectedBackgrounds, customPrompt });
 
   const backgrounds = [
-    { name: 'City', image: cityImage, isAdult: false },
-    { name: 'School', image: schoolImage, isAdult: false },
-    { name: 'Beach', image: beachImage, isAdult: false },
-    { name: 'Forest', image: forestImage, isAdult: false },
-    { name: 'Hot Springs', image: hotspringsImage, isAdult: true },
-    { name: 'Cafe', image: cafeImage, isAdult: false },
-    { name: 'Japanese House', image: japanesehouseImage, isAdult: false },
-    { name: 'Dungeon', image: dungeonImage, isAdult: false },
-    { name: 'Street', image: streetImage, isAdult: false },
-    { name: 'Sauna', image: saunaImage, isAdult: true },
-    { name: 'Pool', image: poolImage, isAdult: false },
-    { name: 'Bedroom', image: bedroomImage, isAdult: true },
-    { name: 'Bathroom', image: bathroomImage, isAdult: true },
-    { name: 'Island', image: islandImage, isAdult: false },
-    { name: 'Waterfall', image: waterfallImage, isAdult: false },
+    { name: 'City', image: '/images/backgrounds/city.jpg', isAdult: false },
+    { name: 'School', image: '/images/backgrounds/school.jpg', isAdult: false },
+    { name: 'Beach', image: '/images/backgrounds/beach.jpg', isAdult: false },
+    { name: 'Forest', image: '/images/backgrounds/forest.jpg', isAdult: false },
+    { name: 'Hot Springs', image: '/images/backgrounds/hot_springs.jpg', isAdult: true },
+    { name: 'Cafe', image: '/images/backgrounds/cafe.jpg', isAdult: false },
+    { name: 'Japanese House', image: '/images/backgrounds/Japanese_house.jpg', isAdult: false },
+    { name: 'Dungeon', image: '/images/backgrounds/dungeon.jpg', isAdult: false },
+    { name: 'Street', image: '/images/backgrounds/street.jpg', isAdult: false },
+    { name: 'Sauna', image: '/images/backgrounds/sauna.jpg', isAdult: true },
+    { name: 'Pool', image: '/images/backgrounds/pool.jpg', isAdult: false },
+    { name: 'Bedroom', image: '/images/backgrounds/bedroom.jpg', isAdult: true },
+    { name: 'Bathroom', image: '/images/backgrounds/bathroom.jpg', isAdult: true },
+    { name: 'Island', image: '/images/backgrounds/island.jpg', isAdult: false },
+    { name: 'Waterfall', image: '/images/backgrounds/waterfall.jpg', isAdult: false },
   ];
 
   const handleBackgroundToggle = (backgroundName, isAdult) => {
@@ -175,6 +161,10 @@ const BackgroundSelect = () => {
                 alt={bg.name}
                 className="w-32 h-32 object-cover rounded-xl"
                 loading="lazy"
+                onError={(e) => {
+                  console.error(`Failed to load image: ${bg.image}`);
+                  e.target.src = '/images/fallback-image.jpg';
+                }}
               />
               <p className="text-white text-base font-medium leading-normal">{bg.name}</p>
               {bg.isAdult && (

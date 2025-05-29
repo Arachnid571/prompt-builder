@@ -1,26 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import defImage from '../assets/images/costume/def.jpg';
-import schoolUniformImage from '../assets/images/costume/school_uniform.jpg';
-import maidImage from '../assets/images/costume/maid.jpg';
-import microSwimsuitImage from '../assets/images/costume/micro_swimsuit.jpg';
-import kimonoImage from '../assets/images/costume/kimono.jpg';
-import bunnyImage from '../assets/images/costume/bunny.jpg';
-import cheerleaderImage from '../assets/images/costume/cheerleader.jpg';
-import nurseImage from '../assets/images/costume/nurse.jpg';
-import policeImage from '../assets/images/costume/police.jpg';
-import microBikiniImage from '../assets/images/costume/micro_bikini.jpg';
-import towelImage from '../assets/images/costume/towel.jpg';
-import stockingsImage from '../assets/images/costume/stockings.jpg';
-import thongImage from '../assets/images/costume/thong.jpg';
-import foamImage from '../assets/images/costume/foam.jpg';
-import creamImage from '../assets/images/costume/cream.jpg';
-import armorImage from '../assets/images/costume/armor.jpg';
-import nudeImage from '../assets/images/costume/nude.jpg';
-import fishnetImage from '../assets/images/costume/fishnet.jpg';
-import shibariImage from '../assets/images/costume/shibari.jpg';
-import latexImage from '../assets/images/costume/latex.jpg';
-import dressImage from '../assets/images/costume/dress.jpg';
+
 
 const CostumeSelect = () => {
   const navigate = useNavigate();
@@ -38,27 +18,27 @@ const CostumeSelect = () => {
   console.log('CostumeSelect Params:', { anime, characters, incomingPrompts, selectedCostumes });
 
   const costumes = [
-    { name: 'Default', image: defImage, isAdult: false },
-    { name: 'School Uniform', image: schoolUniformImage, isAdult: false },
-    { name: 'Revealing Maid Outfit', image: maidImage, isAdult: false },
-    { name: 'Revealing Micro Swimsuit', image: microSwimsuitImage, isAdult: true },
-    { name: 'Kimono', image: kimonoImage, isAdult: false },
-    { name: 'Bunny Costume', image: bunnyImage, isAdult: false },
-    { name: 'Cheerleader', image: cheerleaderImage, isAdult: false },
-    { name: 'Revealing Nurse Outfit', image: nurseImage, isAdult: false },
-    { name: 'Revealing Police Uniform', image: policeImage, isAdult: false },
-    { name: 'Revealing Micro Bikini', image: microBikiniImage, isAdult: true },
-    { name: 'Towel', image: towelImage, isAdult: false },
-    { name: 'Stockings and Garter', image: stockingsImage, isAdult: false },
-    { name: 'Thong', image: thongImage, isAdult: true },
-    { name: 'Body Foam', image: foamImage, isAdult: true },
-    { name: 'Body Cream', image: creamImage, isAdult: true },
-    { name: 'Revealing Armor', image: armorImage, isAdult: false },
-    { name: 'Nude', image: nudeImage, isAdult: true },
-    { name: 'Fishnet Bodysuit', image: fishnetImage, isAdult: true },
-    { name: 'Shibari', image: shibariImage, isAdult: true },
-    { name: 'Latex', image: latexImage, isAdult: true },
-    { name: 'Revealing Dress', image: dressImage, isAdult: false },
+    { name: 'Default', image: '/images/costume/def.jpg',isAdult: false },
+    { name: 'School Uniform', image: '/images/costume/school_uniform.jpg', isAdult: false },
+    { name: 'Revealing Maid Outfit', image: '/images/costume/maid.jpg', isAdult: false },
+    { name: 'Revealing Micro Swimsuit', image: '/images/costume/micro_swimsuit.jpg', isAdult: true },
+    { name: 'Kimono', image: '/images/costume/kimono.jpg', isAdult: false },
+    { name: 'Bunny Costume', image: '/images/costume/bunny.jpg', isAdult: false },
+    { name: 'Cheerleader', image: '/images/costume/cheerleader.jpg', isAdult: false },
+    { name: 'Revealing Nurse Outfit', image: '/images/costume/nurse.jpg', isAdult: false },
+    { name: 'Revealing Police Uniform', image: '/images/costume/police.jpg', isAdult: false },
+    { name: 'Revealing Micro Bikini', image: '/images/costume/micro_bikini.jpg', isAdult: true },
+    { name: 'Towel', image: '/images/costume/towel.jpg', isAdult: false },
+    { name: 'Stockings and Garter', image: '/images/costume/stockings.jpg', isAdult: false },
+    { name: 'Thong', image: '/images/costume/thong.jpg', isAdult: true },
+    { name: 'Body Foam', image: '/images/costume/foam.jpg', isAdult: true },
+    { name: 'Body Cream', image: '/images/costume/cream.jpg', isAdult: true },
+    { name: 'Revealing Armor', image: '/images/costume/armor.jpg', isAdult: false },
+    { name: 'Nude', image: '/images/costume/nude.jpg', isAdult: true },
+    { name: 'Fishnet Bodysuit', image: '/images/costume/fishnet.jpg', isAdult: true },
+    { name: 'Shibari', image: '/images/costume/shibari.jpg', isAdult: true },
+    { name: 'Latex', image: '/images/costume/latex.jpg', isAdult: true },
+    { name: 'Revealing Dress', image: '/images/costume/dress.jpg', isAdult: false },
   ];
 
   const handleCostumeToggle = (costumeName, isAdult) => {

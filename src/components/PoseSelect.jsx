@@ -1,41 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import standingImage from '../assets/images/pose/standing.jpg';
-import sittingImage from '../assets/images/pose/sitting.jpg';
-import runningImage from '../assets/images/pose/running.jpg';
-import jumpImage from '../assets/images/pose/jump.jpg';
-import fightImage from '../assets/images/pose/fight.jpg';
-import dancingImage from '../assets/images/pose/dance.jpg';
-import lyingImage from '../assets/images/pose/lying.jpg';
-import stomachImage from '../assets/images/pose/stomach.jpg';
-import kneelingImage from '../assets/images/pose/kneeling.jpg';
-import stretchImage from '../assets/images/pose/stretch.jpg';
-import confiImage from '../assets/images/pose/confi.jpg';
-import squattingImage from '../assets/images/pose/squatting.jpg';
-import floorImage from '../assets/images/pose/floor.jpg';
-import relaxImage from '../assets/images/pose/relax.jpg';
-import forwardImage from '../assets/images/pose/forward.jpg';
-import sideImage from '../assets/images/pose/side.jpg';
-import backImage from '../assets/images/pose/back.jpg';
-import foursImage from '../assets/images/pose/fours.jpg';
-import nelsonImage from '../assets/images/pose/nelson.jpg';
-import happyImage from '../assets/images/emotions/happy.jpg';
-import sadImage from '../assets/images/emotions/sad.jpg';
-import angryImage from '../assets/images/emotions/angry.jpg';
-import shyImage from '../assets/images/emotions/shy.jpg';
-import excitedImage from '../assets/images/emotions/excited.jpg';
-import ahegaoImage from '../assets/images/emotions/ahegao.jpg';
-import cryImage from '../assets/images/emotions/cry.jpg';
-import fearImage from '../assets/images/emotions/fear.jpg';
-import tearsImage from '../assets/images/emotions/tears.jpg';
-import screamImage from '../assets/images/emotions/scream.jpg';
-import salivaImage from '../assets/images/emotions/saliva.jpg';
-import squintingImage from '../assets/images/emotions/squinting.jpg';
-import surprisedImage from '../assets/images/emotions/surprised.jpg';
-import blushImage from '../assets/images/emotions/blush.jpg';
-import tongueImage from '../assets/images/emotions/tongue.jpg';
-import smugImage from '../assets/images/emotions/smug.jpg';
-import embarrassedImage from '../assets/images/emotions/embarrassed.jpg';
+
 
 const PoseSelect = () => {
   const navigate = useNavigate();
@@ -57,45 +22,45 @@ const PoseSelect = () => {
   console.log('PoseSelect Params:', { anime, characters, costumes, incomingPrompts, selectedPoses, selectedEmotions, selectedNsfw });
 
   const poses = [
-    { name: 'Standing', image: standingImage, isAdult: false },
-    { name: 'Sitting', image: sittingImage, isAdult: false },
-    { name: 'Running', image: runningImage, isAdult: false },
-    { name: 'Jumping', image: jumpImage, isAdult: false },
-    { name: 'Fighting', image: fightImage, isAdult: false },
-    { name: 'Dancing', image: dancingImage, isAdult: false },
-    { name: 'Lying on Bed', image: lyingImage, isAdult: false },
-    { name: 'Lying on Stomach', image: stomachImage, isAdult: false },
-    { name: 'Kneeling', image: kneelingImage, isAdult: false },
-    { name: 'Stretching', image: stretchImage, isAdult: false },
-    { name: 'Confident Pose', image: confiImage, isAdult: false },
-    { name: 'Squatting', image: squattingImage, isAdult: false },
-    { name: 'Sitting on Floor', image: floorImage, isAdult: false },
-    { name: 'Relaxed Pose', image: relaxImage, isAdult: false },
-    { name: 'Leaning Forward', image: forwardImage, isAdult: false },
-    { name: 'Lying on Side', image: sideImage, isAdult: false },
-    { name: 'Lying on Back', image: backImage, isAdult: false },
-    { name: 'On All Fours', image: foursImage, isAdult: true },
-    { name: 'Full Nelson', image: nelsonImage, isAdult: true },
+    { name: 'Standing', image: '/images/pose/standing.jpg', isAdult: false },
+    { name: 'Sitting', image: '/images/pose/sitting.jpg', isAdult: false },
+    { name: 'Running', image: '/images/pose/running.jpg', isAdult: false },
+    { name: 'Jumping', image: '/images/pose/jump.jpg', isAdult: false },
+    { name: 'Fighting', image: '/images/pose/fight.jpg', isAdult: false },
+    { name: 'Dancing', image: '/images/pose/dance.jpg', isAdult: false },
+    { name: 'Lying on Bed', image: '/images/pose/lying.jpg', isAdult: false },
+    { name: 'Lying on Stomach', image: '/images/pose/stomach.jpg', isAdult: false },
+    { name: 'Kneeling', image: '/images/pose/kneeling.jpg', isAdult: false },
+    { name: 'Stretching', image: '/images/pose/stretch.jpg', isAdult: false },
+    { name: 'Confident Pose', image: '/images/pose/confi.jpg', isAdult: false },
+    { name: 'Squatting', image: '/images/pose/squatting.jpg', isAdult: false },
+    { name: 'Sitting on Floor', image: '/images/pose/floor.jpg', isAdult: false },
+    { name: 'Relaxed Pose', image: '/images/pose/relax.jpg', isAdult: false },
+    { name: 'Leaning Forward', image: '/images/pose/forward.jpg', isAdult: false },
+    { name: 'Lying on Side', image: '/images/pose/side.jpg', isAdult: false },
+    { name: 'Lying on Back', image: '/images/pose/back.jpg', isAdult: false },
+    { name: 'On All Fours', image: '/images/pose/fours.jpg', isAdult: true },
+    { name: 'Full Nelson', image: '/images/pose/nelson.jpg', isAdult: true },
   ];
 
   const emotions = [
-    { name: 'Happy', image: happyImage, isAdult: false },
-    { name: 'Sad', image: sadImage, isAdult: false },
-    { name: 'Angry', image: angryImage, isAdult: false },
-    { name: 'Shy', image: shyImage, isAdult: false },
-    { name: 'Excited', image: excitedImage, isAdult: false },
-    { name: 'Squinting', image: squintingImage, isAdult: false },
-    { name: 'Ahegao', image: ahegaoImage, isAdult: true },
-    { name: 'Crying', image: cryImage, isAdult: false },
-    { name: 'Fearful', image: fearImage, isAdult: false },
-    { name: 'Tears', image: tearsImage, isAdult: false },
-    { name: 'Screaming', image: screamImage, isAdult: false },
-    { name: 'Saliva', image: salivaImage, isAdult: true },
-    { name: 'Surprised', image: surprisedImage, isAdult: false },
-    { name: 'Blushing', image: blushImage, isAdult: false },
-    { name: 'Tongue Out', image: tongueImage, isAdult: false },
-    { name: 'Smug', image: smugImage, isAdult: false },
-    { name: 'Embarrassed', image: embarrassedImage, isAdult: false },
+    { name: 'Happy', image: '/images/emotions/happy.jpg', isAdult: false },
+    { name: 'Sad', image: '/images/emotions/sad.jpg', isAdult: false },
+    { name: 'Angry', image: '/images/emotions/angry.jpg', isAdult: false },
+    { name: 'Shy', image: '/images/emotions/shy.jpg', isAdult: false },
+    { name: 'Excited', image: '/images/emotions/excited.jpg', isAdult: false },
+    { name: 'Squinting', image: '/images/emotions/squinting.jpg', isAdult: false },
+    { name: 'Ahegao', image: '/images/emotions/ahegao.jpg', isAdult: true },
+    { name: 'Crying', image: '/images/emotions/cry.jpg', isAdult: false },
+    { name: 'Fearful', image: '/images/emotions/fear.jpg', isAdult: false },
+    { name: 'Tears', image: '/images/emotions/tears.jpg', isAdult: false },
+    { name: 'Screaming', image: '/images/emotions/scream.jpg', isAdult: false },
+    { name: 'Saliva', image: '/images/emotions/saliva.jpg', isAdult: true },
+    { name: 'Surprised', image: '/images/emotions/surprised.jpg', isAdult: false },
+    { name: 'Blushing', image: '/images/emotions/blush.jpg', isAdult: false },
+    { name: 'Tongue Out', image: '/images/emotions/tongue.jpg', isAdult: false },
+    { name: 'Smug', image: '/images/emotions/smug.jpg', isAdult: false },
+    { name: 'Embarrassed', image: '/images/emotions/embarrassed.jpg', isAdult: false },
   ];
 
   const nsfw = [

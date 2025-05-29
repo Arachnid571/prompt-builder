@@ -1,24 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import narutoImage from '../assets/images/anime/naruto.jpg';
-import onePieceImage from '../assets/images/anime/onepiece.jpg';
-import bleachImage from '../assets/images/anime/bleach.jpg';
-import genshinImage from '../assets/images/anime/genshin.jpg';
-import fairytailImage from '../assets/images/anime/fairytail.jpg';
-import otherlImage from '../assets/images/anime/other.jpg';
-import generalImage from '../assets/images/anime/general.jpg';
 
 const AnimeGallery = () => {
   const navigate = useNavigate();
 
   const animeList = [
-    { id: 'naruto', title: 'Naruto', image: narutoImage },
-    { id: 'onepiece', title: 'One Piece', image: onePieceImage  },
-    { id: 'bleach', title: 'Bleach', image: bleachImage },
-    { id: 'genshin', title: 'Genshin Impact', image: genshinImage },
-    { id: 'fairytail', title: 'Fairy Tail', image: fairytailImage },
-    { id: 'other', title: 'Other', image: otherlImage },
-    { id: 'general', title: 'General', image: generalImage },
+    { name: 'Naruto', image: '/images/anime/naruto.jpg' },
+    { name: 'One Piece', image: '/images/anime/onepiece.jpg' },
+    { name: 'Bleach', image: '/images/anime/bleach.jpg' },
+    { name: 'Genshin', image: '/images/anime/genshin.jpg' },
+    { name: 'Fairy Tail', image: '/images/anime/fairytail.jpg' },
+    { name: 'Other', image: '/images/anime/other.jpg' },
+    { name: 'General', image: '/images/anime/general.jpg' },
   ];
 
   return (
@@ -27,13 +20,13 @@ const AnimeGallery = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {animeList.map((anime) => (
           <div
-            key={anime.id}
+            key={anime.name}
             className="bg-gray-800 rounded-lg overflow-hidden cursor-pointer hover:bg-gray-700 transition"
-            onClick={() => navigate(`/characters/${anime.id}`)}
+            onClick={() => navigate(`/characters/${anime.name.toLowerCase().replace(/\s+/g, '')}`)} // Нормализуем: "One Piece" → "onepiece"
           >
-            <img src={anime.image} alt={anime.title} className="w-full h-48 object-cover" />
+            <img src={anime.image} alt={anime.name} className="w-full h-48 object-cover" /> {/* Исправлено title на name */}
             <div className="p-4">
-              <h2 className="text-lg font-semibold text-white">{anime.title}</h2>
+              <h2 className="text-lg font-semibold text-white">{anime.name}</h2> {/* Исправлено title на name */}
             </div>
           </div>
         ))}
