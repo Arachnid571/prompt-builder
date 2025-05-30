@@ -38,8 +38,8 @@ const PromptForm = () => {
       return;
     }
     const prompt = [
-      characters.length > 0 ? `${characters.join(', ')} from ${anime}` : '',
-      costumes.length > 0 ? `wearing ${costumes.join(', ')}` : '',
+      characters.length > 0 ? `${characters.join(', ')} ${anime}` : '',
+      costumes.length > 0 ? `${costumes.join(', ')}` : '',
       poses.length > 0 ? `${poses.join(', ')}` : '',
       emotions.length > 0 ? `${emotions.join(', ')}` : '',
       nsfw.length > 0 ? `${nsfw.join(', ')}` : '',
@@ -54,12 +54,12 @@ const PromptForm = () => {
   };
 
   const fullPrompt = [
-    characters.length > 0 ? `${characters.join(', ')} from ${anime}` : '',
-    costumes.length > 0 ? `wearing ${costumes.join(', ')}` : '',
+    characters.length > 0 ? `${characters.join(', ')}` : '',
+    costumes.length > 0 ? `${costumes.join(', ')}` : '',
     poses.length > 0 ? `${poses.join(', ')}` : '',
     emotions.length > 0 ? `${emotions.join(', ')}` : '',
     nsfw.length > 0 ? `${nsfw.join(', ')}` : '',
-    backgrounds.length > 0 ? `in ${backgrounds.join(', ')}` : '',
+    backgrounds.length > 0 ? `${backgrounds.join(', ')}` : '',
     ...incomingPrompts,
     style ? `${style}` : '',
     details ? `${details}` : '',
@@ -116,7 +116,7 @@ const PromptForm = () => {
               onChange={(e) => setStyle(e.target.value)}
             />
             <textarea
-              placeholder="Additional details"
+              placeholder="Add details separated by commas if necessary"
               className="w-full p-2 rounded bg-[#2e3a2b] text-white border border-[#445c3d] h-24"
               value={details}
               onChange={(e) => setDetails(e.target.value)}
