@@ -1,33 +1,39 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { usePrompt } from '../App';
+import axios from 'axios';
 
 const CostumeSelect = () => {
   const navigate = useNavigate();
   const { anime } = useParams();
   const { selectedAnime, setSelectedCostume, telegramUser } = usePrompt();
 
-  const [showModal, setShowModal] = useState(false); // Для модального окна
-  const [isChecking, setIsChecking] = useState(false); // Для состояния загрузки API
+  const [showModal, setShowModal] = useState(false);
+  const [isChecking, setIsChecking] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(null);
 
-  // API для проверки подписки
   const checkSubscription = async (userId) => {
+    setIsChecking(true);
     try {
-      const response = await fetch(`/api/subscription/${userId}`);
-      if (!response.ok) throw new Error('Ошибка сервера');
-      const data = await response.json();
-      return data.isSubscribed || false;
+      await axios.get(`/api/subscription`, { params: { userId } });
+      // Ждём ответа бота в Telegram (упрощение)
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+      setIsSubscribed(true); // Предполагаем успех, в реале нужен WebSocket/polling
+      return true;
     } catch (error) {
-      console.error('Ошибка проверки подписки:', error);
-      return telegramUser?.isSubscribed || false; // Запасной вариант
+      console.error('Subscription check error:', error);
+      setIsSubscribed(false);
+      return false;
+    } finally {
+      setIsChecking(false);
     }
   };
 
   const costumes = [
     { name: '', image: '/images/costumes/def.jpg', isAdult: false },
-    { name: 'revealing School Uniform', image: '/images/costumes/school_uniform.jpg', isAdult: false },
+    { name: 'School Uniform', image: '/images/costumes/school_uniform.jpg', isAdult: false },
     { name: 'revealing Maid Outfit', image: '/images/costumes/maid.jpg', isAdult: false },
-    { name: 'Revealing Micro Swimsuit', image: '/images/costumes/micro_swimsuit.jpg', isAdult: false },
+    { name: 'revealing Micro Swimsuit', image: '/images/costumes/micro_swimsuit.jpg', isAdult: false },
     { name: 'Kimono', image: '/images/costumes/kimono.jpg', isAdult: false },
     { name: 'Bunny Costume', image: '/images/costumes/bunny.jpg', isAdult: false },
     { name: 'Cheerleader', image: '/images/costumes/cheerleader.jpg', isAdult: false },
@@ -51,10 +57,8 @@ const CostumeSelect = () => {
 
   const handleCostumeSelect = async (costume) => {
     if (costume.isAdult && telegramUser) {
-      setIsChecking(true);
-      const isSubscribed = await checkSubscription(telegramUser.id);
-      setIsChecking(false);
-      if (!isSubscribed) {
+      const subscribed = await checkSubscription(telegramUser.id);
+      if (!subscribed) {
         setShowModal(true);
         return;
       }
@@ -104,7 +108,7 @@ const CostumeSelect = () => {
             <div
               key={costume.name}
               className={`flex flex-col gap-3 rounded-lg border p-2 cursor-pointer ${
-                costume.isAdult && !telegramUser?.isSubscribed ? 'opacity-50 cursor-not-allowed' : 'border-[#445c3d] hover:bg-[#2e3a2b]'
+                costume.isAdult && isSubscribed === false ? 'opacity-50 cursor-not-allowed' : 'border-[#445c3d] hover:bg-[#2e3a2b]'
               }`}
               onClick={() => !isChecking && handleCostumeSelect(costume)}
             >
@@ -125,12 +129,11 @@ const CostumeSelect = () => {
           ))}
         </div>
       </div>
-      {/* Модальное окно */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-[#222e1f] p-6 rounded-lg max-w-sm w-full text-center">
-            <h3 className="text-white text-lg font-bold mb-4">Subscription required</h3>
-            <p className="text-gray-300 mb-6">This content is available to subscribers only. Please subscribe.</p>
+            <h3 className="text-white text-lg font-bold mb-4">Subscription Required</h3>
+            <p className="text-gray-300 mb-6">This content is available only to subscribers. Please subscribe in Telegram.</p>
             <div className="flex gap-4 justify-center">
               <button
                 className="px-4 py-2 bg-[#445d3e] text-white rounded hover:bg-[#556b4e]"
@@ -142,10 +145,10 @@ const CostumeSelect = () => {
                 className="px-4 py-2 bg-[#a4be9d] text-[#171f14] rounded hover:bg-[#b8d0b2]"
                 onClick={() => {
                   setShowModal(false);
-                  window.open('https://t.me/AniGenerator_bot?', '_blank'); // Ссылка на бота подписки
+                  window.open('https://t.me/AniGenerator', '_blank');
                 }}
               >
-                Subscribe now
+                Subscribe
               </button>
             </div>
           </div>

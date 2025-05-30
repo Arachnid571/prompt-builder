@@ -7,6 +7,7 @@ import CostumeSelect from './components/CostumeSelect';
 import PoseSelect from './components/PoseSelect';
 import BackgroundSelect from './components/BackgroundSelect';
 import PromptForm from './components/PromptForm';
+import axios from 'axios'
 
 // Создаём контекст для хранения состояния
 const PromptContext = createContext();
@@ -86,7 +87,6 @@ function App() {
     setIsSending(true);
     try {
       if (process.env.NODE_ENV === 'development') {
-        // Эмуляция отправки для локального тестирования
         console.log('Эмуляция отправки данных в бот:', {
           userId: telegramUser.id,
           prompt,
@@ -99,19 +99,14 @@ function App() {
           background: selectedBackground?.name,
         });
       } else {
-        WebApp.sendData(
-          JSON.stringify({
-            userId: telegramUser.id,
-            prompt,
-            anime: selectedAnime?.name,
-            character: selectedCharacter?.name,
-            costume: selectedCostume?.name,
-            pose: selectedPose?.name,
-            emotions: selectedEmotions,
-            nsfw: selectedNsfw,
-            background: selectedBackground?.name,
-          })
-        );
+        const response = await axios.post('/api/generate', {
+          userId: telegramUser.id,
+          character: selectedCharacter?.name || '',
+          costume: selectedCostume?.name || '',
+          pose: selectedPose?.name || '',
+          background: selectedBackground?.name || '',
+        });
+        alert('Генерация начата! Проверьте Telegram для результата.');
       }
     } catch (error) {
       console.error('Ошибка отправки данных в бот:', error);
@@ -167,7 +162,7 @@ function App() {
         <div className="min-h-screen bg-[#171f14] text-gray-100">
           {telegramUser ? (
             <p className="p-4 text-center text-lg">
-              Привет, {telegramUser.firstName}!
+              Hi, {telegramUser.firstName}!
             </p>
           ) : (
             <p className="p-4 text-center text-red-500 text-lg">
