@@ -61,13 +61,13 @@ function App() {
     const parts = [];
     if (selectedCharacter?.name) parts.push(selectedCharacter.name);
     if (selectedAnime?.name && !['General', 'Other'].includes(selectedAnime.name)) {
-      parts.push(`из ${selectedAnime.name}`);
+      parts.push(``);
     }
-    if (selectedCostume?.name) parts.push(`в ${selectedCostume.name.toLowerCase()}`);
+    if (selectedCostume?.name) parts.push(`${selectedCostume.name.toLowerCase()}`);
     if (selectedPose?.name) parts.push(selectedPose.name.toLowerCase());
-    if (selectedEmotions.length > 0) parts.push(`с выражением ${selectedEmotions.join(', ').toLowerCase()}`);
+    if (selectedEmotions.length > 0) parts.push(`${selectedEmotions.join(', ').toLowerCase()}`);
     if (selectedNsfw.length > 0) parts.push(selectedNsfw.join(', ').toLowerCase());
-    if (selectedBackground?.name) parts.push(`на фоне ${selectedBackground.name.toLowerCase()}`);
+    if (selectedBackground?.name) parts.push(`${selectedBackground.name.toLowerCase()}`);
     const newPrompt = parts.filter(Boolean).join(', ');
     setPrompt(newPrompt);
     return newPrompt;
