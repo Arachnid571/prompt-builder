@@ -54,8 +54,8 @@ const PoseSelect = () => {
     { name: 'Leaning Forward', image: '/images/poses/forward.jpg', isAdult: false },
     { name: 'Lying on Side', image: '/images/poses/side.jpg', isAdult: false },
     { name: 'Lying on Back', image: '/images/poses/back.jpg', isAdult: false },
-    { name: 'On All Fours', image: '/images/poses/fours.jpg', isAdult: true },
-    { name: 'Full Nelson', image: '/images/poses/nelson.jpg', isAdult: true },
+    { name: 'On all fours', image: '/images/poses/fours.jpg', isAdult: false },
+    { name: 'Full Nelson', image: '/images/poses/nelson.jpg', isAdult: false },
   ];
 
   const emotions = [
@@ -65,12 +65,12 @@ const PoseSelect = () => {
     { name: 'Shy', image: '/images/emotions/shy.jpg', isAdult: false },
     { name: 'Excited', image: '/images/emotions/excited.jpg', isAdult: false },
     { name: 'Squinting', image: '/images/emotions/squinting.jpg', isAdult: false },
-    { name: 'Ahegao', image: '/images/emotions/ahegao.jpg', isAdult: true },
+    { name: 'Ahegao', image: '/images/emotions/ahegao.jpg', isAdult: false },
     { name: 'Crying', image: '/images/emotions/cry.jpg', isAdult: false },
     { name: 'Fear', image: '/images/emotions/fear.jpg', isAdult: false },
     { name: 'Tears', image: '/images/emotions/tears.jpg', isAdult: false },
     { name: 'Screaming', image: '/images/emotions/scream.jpg', isAdult: false },
-    { name: 'Saliva', image: '/images/emotions/saliva.jpg', isAdult: true },
+    { name: 'Saliva', image: '/images/emotions/saliva.jpg', isAdult: false },
     { name: 'Surprised', image: '/images/emotions/surprised.jpg', isAdult: false },
     { name: 'Blushing', image: '/images/emotions/blush.jpg', isAdult: false },
     { name: 'Tongue Out', image: '/images/emotions/tongue.jpg', isAdult: false },
@@ -84,7 +84,7 @@ const PoseSelect = () => {
     'Defloration', 'Dildo', 'Vibrator', 'Dominatrix', 'Anus', 'Urination', 'Urine', 'Piss', 'Whore', 'Cunnilingus', 'Nipples', 'Chubby Nipples', 'Rimming', 'Rimjob', 'Slave', 'Titjob', 'Nipple Sucking', 'Nipple Licking', 'Handjob', 'Squirting', 'Lactation',
     'Lesbian', 'Strapon', 'Topless', 'Missionary', 'Peeing', 'Mating', 'Footjob', 'Wet Body', 'Oiled Body', 'Hard Nipples', 'Tan Lines', 'Bucket of Cum', 'Bouncing Breasts', 'Jiggling Breasts', 'Bounce Lines', 'Exposed Breasts', 'Doggy Style', 'Belly Bulge from Penetration Penis-Shaped Belly Bulge',
     'Shackles', 'Sex Machine'
-  ].map(tag => ({ name: tag, isAdult: true }));
+  ].map(tag => ({ name: tag, isAdult: false }));
 
   const normalizedAnime = anime?.toLowerCase().replace(/\s+/g, '');
 
