@@ -54,7 +54,7 @@ const PoseSelect = () => {
     { name: 'Leaning Forward', image: '/images/poses/forward.jpg', isAdult: false },
     { name: 'Lying on Side', image: '/images/poses/side.jpg', isAdult: false },
     { name: 'Lying on Back', image: '/images/poses/back.jpg', isAdult: false },
-    { name: 'On all fours', image: '/images/poses/fours.jpg', isAdult: false },
+    { name: 'On All Fours', image: '/images/poses/fours.jpg', isAdult: false },
     { name: 'Full Nelson', image: '/images/poses/nelson.jpg', isAdult: false },
   ];
 

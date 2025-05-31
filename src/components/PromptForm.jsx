@@ -76,7 +76,6 @@ const PromptForm = () => {
           <h3 className="text-white text-lg font-bold mb-4">Your Prompt:</h3>
           <p className="text-white mb-6">{prompt || 'No prompt generated yet'}</p>
           <div className="space-y-4">
-           {false && ( 
             <button
               onClick={sendToBot}
               disabled={isSending || !prompt || (!isNsfwAllowed && hasNsfw)}
@@ -86,9 +85,8 @@ const PromptForm = () => {
                   : 'bg-[#445d3e] hover:bg-[#556b4e]'
               }`}
             >
-              {isSending ? 'Sending...' : 'Send to Bot'}  
+              {isSending ? 'Sending...' : 'Send to Bot'}
             </button>
-            )}
             <button
               onClick={handleCopy}
               disabled={!prompt}

@@ -1,39 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { usePrompt } from '../App';
-import axios from 'axios';
 
 const CostumeSelect = () => {
   const navigate = useNavigate();
   const { anime } = useParams();
   const { selectedAnime, setSelectedCostume, telegramUser } = usePrompt();
 
-  const [showModal, setShowModal] = useState(false);
-  const [isChecking, setIsChecking] = useState(false);
-  const [isSubscribed, setIsSubscribed] = useState(null);
+  const [showModal, setShowModal] = useState(false); // Для модального окна
+  const [isChecking, setIsChecking] = useState(false); // Для состояния загрузки API
 
+  // API для проверки подписки
   const checkSubscription = async (userId) => {
-    setIsChecking(true);
     try {
-      await axios.get(`/api/subscription`, { params: { userId } });
-      // Ждём ответа бота в Telegram (упрощение)
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-      setIsSubscribed(true); // Предполагаем успех, в реале нужен WebSocket/polling
-      return true;
+      const response = await fetch(`/api/subscription/${userId}`);
+      if (!response.ok) throw new Error('Ошибка сервера');
+      const data = await response.json();
+      return data.isSubscribed || false;
     } catch (error) {
-      console.error('Subscription check error:', error);
-      setIsSubscribed(false);
-      return false;
-    } finally {
-      setIsChecking(false);
+      console.error('Ошибка проверки подписки:', error);
+      return telegramUser?.isSubscribed || false; // Запасной вариант
     }
   };
 
   const costumes = [
     { name: '', image: '/images/costumes/def.jpg', isAdult: false },
-    { name: 'revealing school Uniform', image: '/images/costumes/school_uniform.jpg', isAdult: false },
+    { name: 'revealing School Uniform', image: '/images/costumes/school_uniform.jpg', isAdult: false },
     { name: 'revealing Maid Outfit', image: '/images/costumes/maid.jpg', isAdult: false },
-    { name: 'revealing Micro Swimsuit', image: '/images/costumes/micro_swimsuit.jpg', isAdult: false },
+    { name: 'Revealing Micro Swimsuit', image: '/images/costumes/micro_swimsuit.jpg', isAdult: false },
     { name: 'Kimono', image: '/images/costumes/kimono.jpg', isAdult: false },
     { name: 'Bunny Costume', image: '/images/costumes/bunny.jpg', isAdult: false },
     { name: 'Cheerleader', image: '/images/costumes/cheerleader.jpg', isAdult: false },
@@ -46,10 +40,10 @@ const CostumeSelect = () => {
     { name: 'Foam on body', image: '/images/costumes/foam.jpg', isAdult: false },
     { name: 'Cream on body', image: '/images/costumes/cream.jpg', isAdult: false },
     { name: 'revealing Armor', image: '/images/costumes/armor.jpg', isAdult: false },
-    { name: 'Nude', image: '/images/costumes/nude.jpg', isAdult: false },
-    { name: 'Fishnet Bodysuit', image: '/images/costumes/fishnet.jpg', isAdult: false },
-    { name: 'Shibari', image: '/images/costumes/shibari.jpg', isAdult: false },
-    { name: 'Latex', image: '/images/costumes/latex.jpg', isAdult: false },
+    { name: 'Nude', image: '/images/costumes/nude.jpg', isAdult: true },
+    { name: 'Fishnet Bodysuit', image: '/images/costumes/fishnet.jpg', isAdult: true },
+    { name: 'Shibari', image: '/images/costumes/shibari.jpg', isAdult: true },
+    { name: 'Latex', image: '/images/costumes/latex.jpg', isAdult: true },
     { name: 'revealing dress', image: '/images/costumes/dress.jpg', isAdult: false },
   ];
 
@@ -57,8 +51,10 @@ const CostumeSelect = () => {
 
   const handleCostumeSelect = async (costume) => {
     if (costume.isAdult && telegramUser) {
-      const subscribed = await checkSubscription(telegramUser.id);
-      if (!subscribed) {
+      setIsChecking(true);
+      const isSubscribed = await checkSubscription(telegramUser.id);
+      setIsChecking(false);
+      if (!isSubscribed) {
         setShowModal(true);
         return;
       }
@@ -108,7 +104,7 @@ const CostumeSelect = () => {
             <div
               key={costume.name}
               className={`flex flex-col gap-3 rounded-lg border p-2 cursor-pointer ${
-                costume.isAdult && isSubscribed === false ? 'opacity-50 cursor-not-allowed' : 'border-[#445c3d] hover:bg-[#2e3a2b]'
+                costume.isAdult && !telegramUser?.isSubscribed ? 'opacity-50 cursor-not-allowed' : 'border-[#445c3d] hover:bg-[#2e3a2b]'
               }`}
               onClick={() => !isChecking && handleCostumeSelect(costume)}
             >
@@ -129,11 +125,12 @@ const CostumeSelect = () => {
           ))}
         </div>
       </div>
+      {/* Модальное окно */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-[#222e1f] p-6 rounded-lg max-w-sm w-full text-center">
-            <h3 className="text-white text-lg font-bold mb-4">Subscription Required</h3>
-            <p className="text-gray-300 mb-6">This content is available only to subscribers. Please subscribe in Telegram.</p>
+            <h3 className="text-white text-lg font-bold mb-4">Subscription required</h3>
+            <p className="text-gray-300 mb-6">This content is available to subscribers only. Please subscribe.</p>
             <div className="flex gap-4 justify-center">
               <button
                 className="px-4 py-2 bg-[#445d3e] text-white rounded hover:bg-[#556b4e]"
@@ -145,10 +142,10 @@ const CostumeSelect = () => {
                 className="px-4 py-2 bg-[#a4be9d] text-[#171f14] rounded hover:bg-[#b8d0b2]"
                 onClick={() => {
                   setShowModal(false);
-                  window.open('https://t.me/AniGenerator', '_blank');
+                  window.open('https://t.me/AniGenerator_bot?', '_blank'); // Ссылка на бота подписки
                 }}
               >
-                Subscribe
+                Subscribe now
               </button>
             </div>
           </div>

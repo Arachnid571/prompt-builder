@@ -109,7 +109,7 @@ const CharacterSelect = () => {
     general: [
       { name: 'Girl', image: '/images/characters/girl.jpg', isAdult: false },
       { name: 'Woman', image: '/images/characters/woman.jpg', isAdult: false },
-      { name: 'Milf', image: '/images/characters/milf.jpg', isAdult: true },
+      { name: 'MILF', image: '/images/characters/milf.jpg', isAdult: false },
       { name: 'Demon', image: '/images/characters/demon.jpg', isAdult: false },
       { name: 'Monster', image: '/images/characters/monster.jpg', isAdult: false },
       { name: 'Goblin', image: '/images/characters/goblin.jpg', isAdult: false },

@@ -7,8 +7,8 @@ import CostumeSelect from './components/CostumeSelect';
 import PoseSelect from './components/PoseSelect';
 import BackgroundSelect from './components/BackgroundSelect';
 import PromptForm from './components/PromptForm';
-import axios from 'axios';
 
+// Создаём контекст для хранения состояния
 const PromptContext = createContext();
 
 export const usePrompt = () => useContext(PromptContext);
@@ -26,59 +26,54 @@ function App() {
   const [isSending, setIsSending] = useState(false);
   const [activeTab, setActiveTab] = useState('poses');
 
+  // Инициализация Telegram Web App или эмуляция для локальной разработки
   useEffect(() => {
-    const initializeUser = async () => {
-      if (process.env.NODE_ENV === 'development') {
-        const testUser = {
-          id: '381349971',
-          firstName: 'Тестовый',
-          lastName: 'Пользователь',
-          username: 'testuser',
-          isSubscribed: false,
-        };
-        try {
-          const response = await axios.get('/api/subscription', { params: { userId: testUser.id } });
-          setTelegramUser({ ...testUser, isSubscribed: response.data.isSubscribed });
-        } catch (error) {
-          console.error('Ошибка проверки подписки:', error);
-          setTelegramUser({ ...testUser, isSubscribed: true }); // Для тестов NSFW
-        }
-        return;
-      }
+    if (process.env.NODE_ENV === 'development') {
+      // Эмуляция пользователя для локального тестирования
+      setTelegramUser({
+        id: 'test_user_123',
+        firstName: 'Тестовый',
+        lastName: 'Пользователь',
+        username: 'testuser',
+        isSubscribed: false, // Для тестирования NSFW-контента
+      });
+      console.log('Локальная эмуляция Telegram пользователя');
+      return;
+    }
 
-      try {
-        WebApp.ready();
-        WebApp.expand();
-        const user = WebApp.initDataUnsafe?.user;
-        if (user) {
-          const response = await axios.get('/api/subscription', { params: { userId: user.id } });
-          setTelegramUser({ ...user, isSubscribed: response.data.isSubscribed });
-          console.log('Пользователь Telegram:', { ...user, isSubscribed: response.data.isSubscribed });
-        } else {
-          console.warn('Приложение не запущено в Telegram Web App');
-        }
-      } catch (error) {
-        console.error('Ошибка инициализации Telegram Web App:', error);
+    try {
+      WebApp.ready();
+      WebApp.expand();
+      const user = WebApp.initDataUnsafe?.user;
+      if (user) {
+        setTelegramUser({ ...user, isSubscribed: false }); // Заглушка для подписки
+        console.log('Пользователь Telegram:', user);
+      } else {
+        console.warn('Приложение не запущено в Telegram Web App');
       }
-    };
-
-    initializeUser();
+    } catch (error) {
+      console.error('Ошибка инициализации Telegram Web App:', error);
+    }
   }, []);
 
+  // Формирование промпта
   const generatePrompt = () => {
     const parts = [];
     if (selectedCharacter?.name) parts.push(selectedCharacter.name);
-    if (selectedCostume?.name) parts.push(`${selectedCostume.name.toLowerCase()}`);
+    if (selectedAnime?.name && !['General', 'Other'].includes(selectedAnime.name)) {
+      parts.push(`из ${selectedAnime.name}`);
+    }
+    if (selectedCostume?.name) parts.push(`в ${selectedCostume.name.toLowerCase()}`);
     if (selectedPose?.name) parts.push(selectedPose.name.toLowerCase());
-    if (selectedEmotions.length > 0) parts.push(`${selectedEmotions.join(', ').toLowerCase()}`);
+    if (selectedEmotions.length > 0) parts.push(`с выражением ${selectedEmotions.join(', ').toLowerCase()}`);
     if (selectedNsfw.length > 0) parts.push(selectedNsfw.join(', ').toLowerCase());
-    if (selectedBackground?.name) parts.push(`${selectedBackground.name.toLowerCase()}`);
+    if (selectedBackground?.name) parts.push(`на фоне ${selectedBackground.name.toLowerCase()}`);
     const newPrompt = parts.filter(Boolean).join(', ');
-    console.log('Generated prompt:', newPrompt);
     setPrompt(newPrompt);
     return newPrompt;
   };
 
+  // Отправка промпта в бот
   const sendToBot = async () => {
     if (!prompt) {
       alert('Пожалуйста, выберите все опции для создания промпта');
@@ -91,7 +86,7 @@ function App() {
     setIsSending(true);
     try {
       if (process.env.NODE_ENV === 'development') {
-        // Эмуляция отправки для логов
+        // Эмуляция отправки для локального тестирования
         console.log('Эмуляция отправки данных в бот:', {
           userId: telegramUser.id,
           prompt,
@@ -103,34 +98,30 @@ function App() {
           nsfw: selectedNsfw,
           background: selectedBackground?.name,
         });
-      }
-
-      // Отправляем команду /generate от имени пользователя
-      const command = `/generate ${prompt}`;
-      if (process.env.NODE_ENV !== 'development' && window.Telegram?.WebApp) {
-        // Используем WebApp для отправки сообщения в чат
-        window.Telegram.WebApp.sendData(JSON.stringify({ command }));
-        alert('Команда отправлена в чат с ботом!');
       } else {
-        // Локальная отправка через API для тестов
-        const response = await axios.post('/api/generate', {
-          userId: telegramUser.id,
-          character: selectedCharacter?.name || '',
-          costume: selectedCostume?.name || '',
-          pose: selectedPose?.name || '',
-          background: selectedBackground?.name || '',
-        });
-        console.log('Отправлено через API:', response.data);
-        alert('Генерация начата! Проверьте Telegram для результата.');
+        WebApp.sendData(
+          JSON.stringify({
+            userId: telegramUser.id,
+            prompt,
+            anime: selectedAnime?.name,
+            character: selectedCharacter?.name,
+            costume: selectedCostume?.name,
+            pose: selectedPose?.name,
+            emotions: selectedEmotions,
+            nsfw: selectedNsfw,
+            background: selectedBackground?.name,
+          })
+        );
       }
     } catch (error) {
       console.error('Ошибка отправки данных в бот:', error);
-      alert(`Не удалось отправить промпт в бот: ${error.message}`);
+      alert('Не удалось отправить промпт в бот');
     } finally {
       setIsSending(false);
     }
   };
 
+  // Очистка выбора
   const resetSelections = () => {
     setSelectedAnime(null);
     setSelectedCharacter(null);
@@ -143,6 +134,7 @@ function App() {
     setActiveTab('poses');
   };
 
+  // Значение контекста
   const promptContextValue = {
     selectedAnime,
     setSelectedAnime,
@@ -175,7 +167,7 @@ function App() {
         <div className="min-h-screen bg-[#171f14] text-gray-100">
           {telegramUser ? (
             <p className="p-4 text-center text-lg">
-              Hi {telegramUser.firstName}!
+              Привет, {telegramUser.firstName}!
             </p>
           ) : (
             <p className="p-4 text-center text-red-500 text-lg">
