@@ -40,10 +40,10 @@ const CostumeSelect = () => {
     { name: 'Foam on body', image: '/images/costumes/foam.jpg', isAdult: false },
     { name: 'Cream on body', image: '/images/costumes/cream.jpg', isAdult: false },
     { name: 'revealing Armor', image: '/images/costumes/armor.jpg', isAdult: false },
-    { name: 'Nude', image: '/images/costumes/nude.jpg', isAdult: true },
-    { name: 'Fishnet Bodysuit', image: '/images/costumes/fishnet.jpg', isAdult: true },
-    { name: 'Shibari', image: '/images/costumes/shibari.jpg', isAdult: true },
-    { name: 'Latex', image: '/images/costumes/latex.jpg', isAdult: true },
+    { name: 'Nude', image: '/images/costumes/nude.jpg', isAdult: false },
+    { name: 'Fishnet Bodysuit', image: '/images/costumes/fishnet.jpg', isAdult: false },
+    { name: 'Shibari', image: '/images/costumes/shibari.jpg', isAdult: false },
+    { name: 'Latex', image: '/images/costumes/latex.jpg', isAdult: false },
     { name: 'revealing dress', image: '/images/costumes/dress.jpg', isAdult: false },
   ];
 

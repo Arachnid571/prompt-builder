@@ -7,13 +7,13 @@ const AnimeGallery = () => {
   const { setSelectedAnime, resetSelections } = usePrompt();
 
   const animeList = [
+    { name: 'General', image: '/images/anime/general.jpg' },
     { name: 'Naruto', image: '/images/anime/naruto.jpg' },
     { name: 'One Piece', image: '/images/anime/onepiece.jpg' },
-    { name: 'Bleach', image: '/images/anime/bleach.jpg' },
-    { name: 'Genshin', image: '/images/anime/genshin.jpg' }, // Исправлено на полное название
+    { name: 'Bleach', image: '/images/anime/bleach.jpg' }, // Исправлено на полное название
+    { name: 'Genshin', image: '/images/anime/genshin.jpg' },
     { name: 'Fairy Tail', image: '/images/anime/fairytail.jpg' },
     { name: 'Other', image: '/images/anime/other.jpg' },
-    { name: 'General', image: '/images/anime/general.jpg' },
   ];
 
   const handleSelect = (anime) => {

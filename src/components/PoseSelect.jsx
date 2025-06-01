@@ -20,10 +20,9 @@ const PoseSelect = () => {
     setActiveTab,
   } = usePrompt();
 
-  const [showModal, setShowModal] = useState(false); // Для модального окна
-  const [isChecking, setIsChecking] = useState(false); // Для состояния загрузки API
+  const [showModal, setShowModal] = useState(false);
+  const [isChecking, setIsChecking] = useState(false);
 
-  // API для проверки подписки
   const checkSubscription = async (userId) => {
     try {
       const response = await fetch(`/api/subscription/${userId}`);
@@ -32,7 +31,7 @@ const PoseSelect = () => {
       return data.isSubscribed || false;
     } catch (error) {
       console.error('Ошибка проверки подписки:', error);
-      return telegramUser?.isSubscribed || false; // Запасной вариант
+      return telegramUser?.isSubscribed || false;
     }
   };
 
@@ -55,7 +54,7 @@ const PoseSelect = () => {
     { name: 'Lying on Side', image: '/images/poses/side.jpg', isAdult: false },
     { name: 'Lying on Back', image: '/images/poses/back.jpg', isAdult: false },
     { name: 'On All Fours', image: '/images/poses/fours.jpg', isAdult: false },
-    { name: 'Full Nelson', image: '/images/poses/nelson.jpg', isAdult: false },
+    { name: 'Full Nelson', image: '/images/poses/nelson.jpg', isAdult: true },
   ];
 
   const emotions = [
@@ -64,8 +63,8 @@ const PoseSelect = () => {
     { name: 'Angry', image: '/images/emotions/angry.jpg', isAdult: false },
     { name: 'Shy', image: '/images/emotions/shy.jpg', isAdult: false },
     { name: 'Excited', image: '/images/emotions/excited.jpg', isAdult: false },
-    { name: 'Squinting', image: '/images/emotions/squinting.jpg', isAdult: false },
-    { name: 'Ahegao', image: '/images/emotions/ahegao.jpg', isAdult: false },
+    { name: 'squatting', image: '/images/emotions/squinting.jpg', isAdult: false },
+    { name: 'Ahegao', image: '/images/emotions/ahegao.jpg', isAdult: true },
     { name: 'Crying', image: '/images/emotions/cry.jpg', isAdult: false },
     { name: 'Fear', image: '/images/emotions/fear.jpg', isAdult: false },
     { name: 'Tears', image: '/images/emotions/tears.jpg', isAdult: false },
@@ -76,15 +75,17 @@ const PoseSelect = () => {
     { name: 'Tongue Out', image: '/images/emotions/tongue.jpg', isAdult: false },
     { name: 'Smug', image: '/images/emotions/smug.jpg', isAdult: false },
     { name: 'Embarrassed', image: '/images/emotions/embarrassed.jpg', isAdult: false },
+    { name: 'Horny', image: '/images/emotions/horny.jpg', isAdult: false },
+    { name: 'Shaking', image: '/images/emotions/shaking.jpg', isAdult: false },
   ];
 
   const nsfw = [
-    'Cum', 'Bondage', 'Sex', 'Huge Breasts', 'Large Breasts', 'Small Breasts', 'Breasts', 'Big Butt', 'Huge Butt', 'Butt', 'Blood', 'Vagina', 'Chubby Vagina', 'Anal Sex', 'Blowjob', 'Masturbation',
-    'Orgasm', 'Slut', 'Fisting', 'Fingers', 'Penis', 'Small Penis', 'Large Penis', 'Huge Penis', 'Gangbang', 'Clitoris', 'Chubby Clitoris', 'BDSM', 'Squirt', 'Heavy Squirt', 'Tentacles', 'Torture', 'Bukkake',
+    'Cum', 'Bondage', 'spread pussy', 'spread ass', 'Sex', 'butt plug', 'gag', 'Huge Breasts', 'Large Breasts', 'Small Breasts', 'Breasts', 'Big Butt', 'Huge Butt', 'Butt', 'Blood', 'Vagina', 'puffy Vagina', 'Anal Sex', 'Blowjob', 'Masturbation',
+    'Orgasm', 'Slut', 'Fisting', 'Fingering', 'Penis', 'Small Penis', 'Large Penis', 'Huge Penis', 'Gangbang', 'Clitoris', 'puffy Clitoris', 'BDSM', 'Squirt', 'strong squirt', 'Tentacles', 'Torture', 'Bukkake',
     'Defloration', 'Dildo', 'Vibrator', 'Dominatrix', 'Anus', 'Urination', 'Urine', 'Piss', 'Whore', 'Cunnilingus', 'Nipples', 'Chubby Nipples', 'Rimming', 'Rimjob', 'Slave', 'Titjob', 'Nipple Sucking', 'Nipple Licking', 'Handjob', 'Squirting', 'Lactation',
-    'Lesbian', 'Strapon', 'Topless', 'Missionary', 'Peeing', 'Mating', 'Footjob', 'Wet Body', 'Oiled Body', 'Hard Nipples', 'Tan Lines', 'Bucket of Cum', 'Bouncing Breasts', 'Jiggling Breasts', 'Bounce Lines', 'Exposed Breasts', 'Doggy Style', 'Belly Bulge from Penetration Penis-Shaped Belly Bulge',
+    'Lesbian', 'Strapon', 'Topless', 'Missionary', 'Peeing', 'Mating', 'Footjob', 'Wet Body', 'Oiled Body', 'Hard Nipples', 'puffy nipples', 'Tan Lines', 'Bucket of Cum', 'Bouncing Breasts', 'Jiggling Breasts', 'Bounce Lines', 'Exposed Breasts', 'Doggy Style', 'Belly Bulge from Penetration', 'Penis-Shaped Belly Bulge',
     'Shackles', 'Sex Machine'
-  ].map(tag => ({ name: tag, isAdult: false }));
+  ].map(tag => ({ name: tag, isAdult: true }));
 
   const normalizedAnime = anime?.toLowerCase().replace(/\s+/g, '');
 
@@ -99,7 +100,9 @@ const PoseSelect = () => {
       }
     }
     if (type === 'poses') {
-      setSelectedPose({ name, isAdult }); // Выбираем одну позу
+      console.log(`Pose selected: ${name}, switching to emotions tab`);
+      setSelectedPose({ name, isAdult });
+      setActiveTab('emotions');
     } else if (type === 'emotions') {
       setSelectedEmotions(prev =>
         prev.includes(name) ? prev.filter(n => n !== name) : [...prev, name]
@@ -196,7 +199,7 @@ const PoseSelect = () => {
             onClick={() => navigate(`/costumes/${normalizedAnime}`)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M224,128a8,8,0,0,1-8,8H59.31l58.34,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,1,0,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+              <path d="M224,128a8,8,0,0,1-8,8H59.31l58.34,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,0,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
             </svg>
           </div>
           <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 pr-12 text-center">
@@ -247,7 +250,6 @@ const PoseSelect = () => {
           )}
         </div>
       </div>
-      {/* Модальное окно */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-[#222e1f] p-6 rounded-lg max-w-sm w-full text-center">
@@ -264,7 +266,7 @@ const PoseSelect = () => {
                 className="px-4 py-2 bg-[#a4be9d] text-[#171f14] rounded hover:bg-[#b8d0b2]"
                 onClick={() => {
                   setShowModal(false);
-                  window.open('https://t.me/AniGenerator_bot?', '_blank'); // Ссылка на бота подписки
+                  window.open('https://t.me/AniGenerator_bot?', '_blank');
                 }}
               >
                 Subscribe now

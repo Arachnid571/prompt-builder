@@ -1,14 +1,13 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WebApp from '@twa-dev/sdk';
 import AnimeGallery from './components/AnimeGallery';
 import CharacterSelect from './components/CharacterSelect';
 import CostumeSelect from './components/CostumeSelect';
 import PoseSelect from './components/PoseSelect';
 import BackgroundSelect from './components/BackgroundSelect';
 import PromptForm from './components/PromptForm';
+import axios from 'axios';
 
-// Создаём контекст для хранения состояния
 const PromptContext = createContext();
 
 export const usePrompt = () => useContext(PromptContext);
@@ -26,102 +25,74 @@ function App() {
   const [isSending, setIsSending] = useState(false);
   const [activeTab, setActiveTab] = useState('poses');
 
-  // Инициализация Telegram Web App или эмуляция для локальной разработки
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      // Эмуляция пользователя для локального тестирования
-      setTelegramUser({
-        id: 'test_user_123',
+    const initializeUser = async () => {
+      // Устанавливаем тестового пользователя по умолчанию
+      const defaultUser = {
+        id: '381349971',
         firstName: 'Тестовый',
         lastName: 'Пользователь',
         username: 'testuser',
-        isSubscribed: false, // Для тестирования NSFW-контента
-      });
-      console.log('Локальная эмуляция Telegram пользователя');
-      return;
-    }
+        isSubscribed: true, // Подписка включена (из предыдущего запроса)
+      };
+      setTelegramUser(defaultUser);
+      console.log('Пользователь установлен:', defaultUser);
+    };
 
-    try {
-      WebApp.ready();
-      WebApp.expand();
-      const user = WebApp.initDataUnsafe?.user;
-      if (user) {
-        setTelegramUser({ ...user, isSubscribed: false }); // Заглушка для подписки
-        console.log('Пользователь Telegram:', user);
-      } else {
-        console.warn('Приложение не запущено в Telegram Web App');
-      }
-    } catch (error) {
-      console.error('Ошибка инициализации Telegram Web App:', error);
-    }
+    initializeUser();
   }, []);
 
-  // Формирование промпта
   const generatePrompt = () => {
     const parts = [];
     if (selectedCharacter?.name) parts.push(selectedCharacter.name);
-    if (selectedAnime?.name && !['General', 'Other'].includes(selectedAnime.name)) {
-      parts.push(`из ${selectedAnime.name}`);
-    }
-    if (selectedCostume?.name) parts.push(`в ${selectedCostume.name.toLowerCase()}`);
+    if (selectedCostume?.name) parts.push(`${selectedCostume.name.toLowerCase()}`);
     if (selectedPose?.name) parts.push(selectedPose.name.toLowerCase());
-    if (selectedEmotions.length > 0) parts.push(`с выражением ${selectedEmotions.join(', ').toLowerCase()}`);
+    if (selectedEmotions.length > 0) parts.push(`${selectedEmotions.join(', ').toLowerCase()}`);
     if (selectedNsfw.length > 0) parts.push(selectedNsfw.join(', ').toLowerCase());
-    if (selectedBackground?.name) parts.push(`на фоне ${selectedBackground.name.toLowerCase()}`);
+    if (selectedBackground?.name) parts.push(`${selectedBackground.name.toLowerCase()}`);
     const newPrompt = parts.filter(Boolean).join(', ');
+    console.log('Generated prompt:', newPrompt);
     setPrompt(newPrompt);
     return newPrompt;
   };
 
-  // Отправка промпта в бот
   const sendToBot = async () => {
     if (!prompt) {
       alert('Пожалуйста, выберите все опции для создания промпта');
       return;
     }
-    if (!telegramUser) {
-      alert('Это приложение должно быть открыто в Telegram');
-      return;
-    }
     setIsSending(true);
     try {
-      if (process.env.NODE_ENV === 'development') {
-        // Эмуляция отправки для локального тестирования
-        console.log('Эмуляция отправки данных в бот:', {
-          userId: telegramUser.id,
-          prompt,
-          anime: selectedAnime?.name,
-          character: selectedCharacter?.name,
-          costume: selectedCostume?.name,
-          pose: selectedPose?.name,
-          emotions: selectedEmotions,
-          nsfw: selectedNsfw,
-          background: selectedBackground?.name,
-        });
-      } else {
-        WebApp.sendData(
-          JSON.stringify({
-            userId: telegramUser.id,
-            prompt,
-            anime: selectedAnime?.name,
-            character: selectedCharacter?.name,
-            costume: selectedCostume?.name,
-            pose: selectedPose?.name,
-            emotions: selectedEmotions,
-            nsfw: selectedNsfw,
-            background: selectedBackground?.name,
-          })
-        );
-      }
+      console.log('Отправка данных в бот:', {
+        userId: telegramUser.id,
+        prompt,
+        anime: selectedAnime?.name,
+        character: selectedCharacter?.name,
+        costume: selectedCostume?.name,
+        pose: selectedPose?.name,
+        emotions: selectedEmotions,
+        nsfw: selectedNsfw,
+        background: selectedBackground?.name,
+      });
+
+      // Отправка через API (как в режиме разработки)
+      const response = await axios.post('/api/generate', {
+        userId: telegramUser.id,
+        character: selectedCharacter?.name || '',
+        costume: selectedCostume?.name || '',
+        pose: selectedPose?.name || '',
+        background: selectedBackground?.name || '',
+      });
+      console.log('Отправлено через API:', response.data);
+      alert('Генерация начата! Проверьте Telegram для результата или консоль для логов.');
     } catch (error) {
       console.error('Ошибка отправки данных в бот:', error);
-      alert('Не удалось отправить промпт в бот');
+      alert(`Не удалось отправить промпт: ${error.message}`);
     } finally {
       setIsSending(false);
     }
   };
 
-  // Очистка выбора
   const resetSelections = () => {
     setSelectedAnime(null);
     setSelectedCharacter(null);
@@ -134,7 +105,6 @@ function App() {
     setActiveTab('poses');
   };
 
-  // Значение контекста
   const promptContextValue = {
     selectedAnime,
     setSelectedAnime,
@@ -165,15 +135,9 @@ function App() {
     <PromptContext.Provider value={promptContextValue}>
       <Router>
         <div className="min-h-screen bg-[#171f14] text-gray-100">
-          {telegramUser ? (
-            <p className="p-4 text-center text-lg">
-              Привет, {telegramUser.firstName}!
-            </p>
-          ) : (
-            <p className="p-4 text-center text-red-500 text-lg">
-              Пожалуйста, откройте приложение в Telegram
-            </p>
-          )}
+          <p className="p-4 text-center text-lg">
+            Hi {telegramUser?.firstName || 'User'}!
+          </p>
           <Routes>
             <Route path="/" element={<AnimeGallery />} />
             <Route path="/characters/:anime" element={<CharacterSelect />} />
