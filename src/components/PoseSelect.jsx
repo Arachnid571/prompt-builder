@@ -55,6 +55,7 @@ const PoseSelect = () => {
     { name: 'Lying on Back', image: '/images/poses/back.jpg', isAdult: false },
     { name: 'On All Fours', image: '/images/poses/fours.jpg', isAdult: false },
     { name: 'Full Nelson', image: '/images/poses/nelson.jpg', isAdult: true },
+    { name: 'jack-o challenge', image: '/images/poses/jack.jpg', isAdult: true },
   ];
 
   const emotions = [
@@ -80,11 +81,11 @@ const PoseSelect = () => {
   ];
 
   const nsfw = [
-    'Cum', 'Bondage', 'spread pussy', 'spread ass', 'Sex', 'butt plug', 'gag', 'Huge Breasts', 'Large Breasts', 'Small Breasts', 'Breasts', 'Big Butt', 'Huge Butt', 'Butt', 'Blood', 'Vagina', 'puffy Vagina', 'Anal Sex', 'Blowjob', 'Masturbation',
+    'Cum', 'Bondage', 'spread pussy', 'spread ass', 'Sex', 'butt plug', 'gag', 'Huge boobs', 'Large boobs', 'Small boobs', 'boobs', 'Big Butt', 'Huge Butt', 'Butt', 'Blood', 'Vagina', 'puffy Vagina', 'Anal Sex', 'Blowjob', 'Masturbation',
     'Orgasm', 'Slut', 'Fisting', 'Fingering', 'Penis', 'Small Penis', 'Large Penis', 'Huge Penis', 'Gangbang', 'Clitoris', 'puffy Clitoris', 'BDSM', 'Squirt', 'strong squirt', 'Tentacles', 'Torture', 'Bukkake',
-    'Defloration', 'Dildo', 'Vibrator', 'Dominatrix', 'Anus', 'Urination', 'Urine', 'Piss', 'Whore', 'Cunnilingus', 'Nipples', 'Chubby Nipples', 'Rimming', 'Rimjob', 'Slave', 'Titjob', 'Nipple Sucking', 'Nipple Licking', 'Handjob', 'Squirting', 'Lactation',
+    'Defloration', 'Dildo', 'Vibrator', 'Dominatrix', 'Anus', 'pee', 'Urine', 'Piss', 'Whore', 'Cunnilingus', 'strong nipples', ' Nipples', 'Rimming', 'Rimjob', 'Slave', 'Titjob', 'Nipple Sucking', 'Nipple Licking', 'Handjob', 'Squirting', 'Lactation',
     'Lesbian', 'Strapon', 'Topless', 'Missionary', 'Peeing', 'Mating', 'Footjob', 'Wet Body', 'Oiled Body', 'Hard Nipples', 'puffy nipples', 'Tan Lines', 'Bucket of Cum', 'Bouncing Breasts', 'Jiggling Breasts', 'Bounce Lines', 'Exposed Breasts', 'Doggy Style', 'Belly Bulge from Penetration', 'Penis-Shaped Belly Bulge',
-    'Shackles', 'Sex Machine'
+    'Shackles', 'Sex Machine', 'laps up cum from a dog bowl', 'boobs grab', 'mating'
   ].map(tag => ({ name: tag, isAdult: true }));
 
   const normalizedAnime = anime?.toLowerCase().replace(/\s+/g, '');
