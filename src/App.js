@@ -30,7 +30,7 @@ function App() {
       // Устанавливаем тестового пользователя по умолчанию
       const defaultUser = {
         id: '381349971',
-        firstName: 'Тестовый',
+        firstName: 'Traveler',
         lastName: 'Пользователь',
         username: 'testuser',
         isSubscribed: true, // Подписка включена (из предыдущего запроса)

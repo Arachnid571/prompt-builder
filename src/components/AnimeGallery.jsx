@@ -11,6 +11,7 @@ const AnimeGallery = () => {
     { name: 'Naruto', image: '/images/anime/naruto.jpg' },
     { name: 'One Piece', image: '/images/anime/onepiece.jpg' },
     { name: 'Bleach', image: '/images/anime/bleach.jpg' },
+    { name: 'Overwatch', image: '/images/anime/overwatch.jpg' },
     { name: 'Genshin', image: '/images/anime/genshin.jpg' },
     { name: 'Fairy Tail', image: '/images/anime/fairytail.jpg' },
     { name: 'Other', image: '/images/anime/other.jpg' },

@@ -24,8 +24,14 @@ const BackgroundSelect = () => {
     { name: 'Island', image: '/images/backgrounds/island.jpg', isAdult: false },
     { name: 'Waterfall', image: '/images/backgrounds/waterfall.jpg', isAdult: false },
     { name: 'Gym', image: '/images/backgrounds/gym.jpg', isAdult: false },
-    { name: 'Bail', image: '/images/backgrounds/bail.jpg', isAdult: false },
+    { name: 'On hay bail', image: '/images/backgrounds/bail.jpg', isAdult: false },
     { name: 'Storage room', image: '/images/backgrounds/storage.jpg', isAdult: false },
+    { name: 'Classroom', image: '/images/backgrounds/class.jpg', isAdult: false },
+    { name: 'Cave', image: '/images/backgrounds/cave.jpg', isAdult: false },
+    { name: 'Barn', image: '/images/backgrounds/barn.jpg', isAdult: false },
+    { name: 'Church', image: '/images/backgrounds/church.jpg', isAdult: false },
+    { name: 'Hospital', image: '/images/backgrounds/hospital.jpg', isAdult: false },
+    { name: 'Park', image: '/images/backgrounds/park.jpg', isAdult: false },
   ];
 
   const normalizedAnime = anime?.toLowerCase().replace(/\s+/g, '');
