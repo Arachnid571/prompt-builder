@@ -34,6 +34,7 @@ const CostumeSelect = () => {
     { name: 'revealing Nurse Outfit', image: '/images/costumes/nurse.jpg', isAdult: false },
     { name: 'revealing Police Uniform', image: '/images/costumes/police.jpg', isAdult: false },
     { name: 'revealing Micro Bikini', image: '/images/costumes/micro_bikini.jpg', isAdult: false },
+    { name: 'patch bikini', image: '/images/costumes/patch.jpg', isAdult: false },
     { name: 'Towel', image: '/images/costumes/towel.jpg', isAdult: false },
     { name: 'Stockings and Garter', image: '/images/costumes/stockings.jpg', isAdult: false },
     { name: 'Thong', image: '/images/costumes/thong.jpg', isAdult: false },
@@ -46,6 +47,10 @@ const CostumeSelect = () => {
     { name: 'Latex', image: '/images/costumes/latex.jpg', isAdult: false },
     { name: 'revealing dress', image: '/images/costumes/dress.jpg', isAdult: false },
     { name: 'revealing nun outfit', image: '/images/costumes/nun.jpg', isAdult: false },
+    { name: 'revealing witch outfit', image: '/images/costumes/witch.jpg', isAdult: false },
+    { name: 'revealing harem outfit', image: '/images/costumes/harem.jpg', isAdult: false },
+    { name: 'strapless sleeveless cotton tube top', image: '/images/costumes/top.jpg', isAdult: false },
+    { name: 'revealing night short chemise', image: '/images/costumes/chemise.jpg', isAdult: false },
   ];
 
   const normalizedAnime = anime?.toLowerCase().replace(/\s+/g, '');

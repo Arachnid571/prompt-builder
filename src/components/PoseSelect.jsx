@@ -56,6 +56,7 @@ const PoseSelect = () => {
     { name: 'On All Fours', image: '/images/poses/fours.jpg', isAdult: false },
     { name: 'Full Nelson', image: '/images/poses/nelson.jpg', isAdult: true },
     { name: 'jack-o challenge', image: '/images/poses/jack.jpg', isAdult: true },
+    { name: 'Pillory', image: '/images/poses/pillory.jpg', isAdult: true },
   ];
 
   const emotions = [
@@ -64,7 +65,7 @@ const PoseSelect = () => {
     { name: 'Angry', image: '/images/emotions/angry.jpg', isAdult: false },
     { name: 'Shy', image: '/images/emotions/shy.jpg', isAdult: false },
     { name: 'Excited', image: '/images/emotions/excited.jpg', isAdult: false },
-    { name: 'squatting', image: '/images/emotions/squinting.jpg', isAdult: false },
+    { name: 'Squinting', image: '/images/emotions/squinting.jpg', isAdult: false },
     { name: 'Ahegao', image: '/images/emotions/ahegao.jpg', isAdult: true },
     { name: 'Crying', image: '/images/emotions/cry.jpg', isAdult: false },
     { name: 'Fear', image: '/images/emotions/fear.jpg', isAdult: false },
@@ -80,14 +81,15 @@ const PoseSelect = () => {
     { name: 'Shaking', image: '/images/emotions/shaking.jpg', isAdult: false },
     { name: 'Moaning', image: '/images/emotions/moaning.jpg', isAdult: false },
     { name: 'Sleep', image: '/images/emotions/sleep.jpg', isAdult: false },
+    { name: 'Heart in eyes', image: '/images/emotions/heart.jpg', isAdult: false },
   ];
 
   const nsfw = [
     'Cum', 'Bondage', 'spread pussy', 'spread ass', 'Sex', 'butt plug', 'gag', 'Huge boobs', 'Large boobs', 'Small boobs', 'boobs', 'Big ass', 'Huge ass', 'ass', 'Blood', 'pussy', 'puffy pussy', 'Anal Sex', 'Blowjob', 'Masturbation', 'anus', 'big anus',
     'Orgasm', 'Slut', 'Fisting', 'Fingering', 'dick', 'Small dick', 'Large dick', 'Huge dick', 'Gangbang', 'Clitoris', 'puffy Clitoris', 'BDSM', 'Squirt', 'strong squirt', 'Tentacles', 'Torture', 'Bukkake',
-    'Defloration', 'Dildo', 'Vibrator', 'Dominatrix', 'Anus', 'pee', 'Urine', 'Piss', 'Whore', 'Cunnilingus', 'strong nipples', ' Nipples', 'Rimming', 'Rimjob', 'Slave', 'Titjob', 'Nipple Sucking', 'Nipple Licking', 'Handjob', 'Squirting', 'Lactation',
+    'Defloration', 'Dildo', 'sex with dildo', 'Vibrator', 'Dominatrix', 'Anus', 'pee', 'Urine', 'Piss', 'Whore', 'Cunnilingus', 'strong nipples', ' Nipples', 'Rimming', 'Rimjob', 'Slave', 'Titjob', 'Nipple Sucking', 'Nipple Licking', 'Handjob', 'Squirting', 'Lactation',
     'Lesbian', 'Strapon', 'Topless', 'Missionary', 'Peeing', 'Mating', 'Footjob', 'Wet Body', 'Oiled Body', 'Hard Nipples', 'puffy nipples', 'Tan Lines', 'Bucket of Cum', 'Bouncing Breasts', 'Jiggling Breasts', 'Bounce Lines', 'Exposed Breasts', 'Doggy Style', 'Belly Bulge from Penetration', 'Penis-Shaped Belly Bulge',
-    'Shackles', 'Sex Machine', 'on all fours,laps up cum from a dog bowl', 'boobs grab', 'mating', 'group sex', 'leash', 'cum on face', 'cum on body', 'nipple piercing', 'clitoris piercing', 'public sex', 'anal beads'
+    'Shackles', 'Sex Machine', 'on all fours,laps up cum from a dog bowl', 'boobs grab', 'mating', 'group sex', 'leash', 'cum on face', 'cum on body', 'nipple piercing', 'clitoris piercing', 'public sex', 'anal beads', 'BBC', 'creampie', 'scotch tape on nipples'
   ].map(tag => ({ name: tag, isAdult: true }));
 
   const normalizedAnime = anime?.toLowerCase().replace(/\s+/g, '');

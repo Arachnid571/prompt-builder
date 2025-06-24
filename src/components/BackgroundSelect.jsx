@@ -32,6 +32,16 @@ const BackgroundSelect = () => {
     { name: 'Church', image: '/images/backgrounds/church.jpg', isAdult: false },
     { name: 'Hospital', image: '/images/backgrounds/hospital.jpg', isAdult: false },
     { name: 'Park', image: '/images/backgrounds/park.jpg', isAdult: false },
+    { name: 'Tavern', image: '/images/backgrounds/tavern.jpg', isAdult: false },
+    { name: 'Changing room', image: '/images/backgrounds/changing.jpg', isAdult: false },
+    { name: 'Metal cage', image: '/images/backgrounds/cage.jpg', isAdult: false },
+    { name: 'Stripper pole', image: '/images/backgrounds/pole.jpg', isAdult: false },
+    { name: 'Dark alley', image: '/images/backgrounds/alley.jpg', isAdult: false },
+    { name: 'Elevator', image: '/images/backgrounds/elevator.jpg', isAdult: false },
+    { name: 'Office', image: '/images/backgrounds/office.jpg', isAdult: false },
+    { name: 'Abandoned haunted house', image: '/images/backgrounds/abandoned.jpg', isAdult: false },
+    { name: 'Attic', image: '/images/backgrounds/attic.jpg', isAdult: false },
+    { name: 'Jungle', image: '/images/backgrounds/jungle.jpg', isAdult: false },
   ];
 
   const normalizedAnime = anime?.toLowerCase().replace(/\s+/g, '');
