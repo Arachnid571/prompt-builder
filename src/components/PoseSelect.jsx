@@ -57,6 +57,8 @@ const PoseSelect = () => {
     { name: 'Full Nelson', image: '/images/poses/nelson.jpg', isAdult: true },
     { name: 'jack-o challenge', image: '/images/poses/jack.jpg', isAdult: true },
     { name: 'Pillory', image: '/images/poses/pillory.jpg', isAdult: true },
+    { name: 'paw pose', image: '/images/poses/paw.jpg', isAdult: true },
+    { name: 'peace pose', image: '/images/poses/peace.jpg', isAdult: true },
   ];
 
   const emotions = [
@@ -85,11 +87,11 @@ const PoseSelect = () => {
   ];
 
   const nsfw = [
-    'Cum', 'Bondage', 'spread pussy', 'spread ass', 'Sex', 'butt plug', 'gag', 'Huge boobs', 'Large boobs', 'Small boobs', 'boobs', 'Big ass', 'Huge ass', 'ass', 'Blood', 'pussy', 'puffy pussy', 'Anal Sex', 'Blowjob', 'Masturbation', 'anus', 'big anus',
+    'Cum', 'Bondage', 'spread pussy', 'spread ass', 'Sex', 'carry sex', 'butt plug', 'gag', 'Huge boobs', 'Large boobs', 'Small boobs', 'boobs', 'Big ass', 'Huge ass', 'ass', 'Blood', 'pussy', 'puffy pussy', 'Anal Sex', 'Blowjob', 'Masturbation', 'anus', 'big anus',
     'Orgasm', 'Slut', 'Fisting', 'Fingering', 'dick', 'Small dick', 'Large dick', 'Huge dick', 'Gangbang', 'Clitoris', 'puffy Clitoris', 'BDSM', 'Squirt', 'strong squirt', 'Tentacles', 'Torture', 'Bukkake',
     'Defloration', 'Dildo', 'sex with dildo', 'Vibrator', 'Dominatrix', 'Anus', 'pee', 'Urine', 'Piss', 'Whore', 'Cunnilingus', 'strong nipples', ' Nipples', 'Rimming', 'Rimjob', 'Slave', 'Titjob', 'Nipple Sucking', 'Nipple Licking', 'Handjob', 'Squirting', 'Lactation',
     'Lesbian', 'Strapon', 'Topless', 'Missionary', 'Peeing', 'Mating', 'Footjob', 'Wet Body', 'Oiled Body', 'Hard Nipples', 'puffy nipples', 'Tan Lines', 'Bucket of Cum', 'Bouncing Breasts', 'Jiggling Breasts', 'Bounce Lines', 'Exposed Breasts', 'Doggy Style', 'Belly Bulge from Penetration', 'Penis-Shaped Belly Bulge',
-    'Shackles', 'Sex Machine', 'on all fours,laps up cum from a dog bowl', 'boobs grab', 'mating', 'group sex', 'leash', 'cum on face', 'cum on body', 'nipple piercing', 'clitoris piercing', 'public sex', 'anal beads', 'BBC', 'creampie', 'scotch tape on nipples'
+    'Shackles', 'Sex Machine', 'on all fours,laps up cum from a dog bowl', 'boobs grab', 'mating', 'group sex', 'leash', 'cum on face', 'cum on body', 'nipple piercing', 'clitoris piercing', 'public sex', 'anal beads', 'BBC', 'creampie', 'scotch tape on nipples', 'facesitting'
   ].map(tag => ({ name: tag, isAdult: true }));
 
   const normalizedAnime = anime?.toLowerCase().replace(/\s+/g, '');

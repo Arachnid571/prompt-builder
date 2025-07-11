@@ -51,6 +51,9 @@ const CostumeSelect = () => {
     { name: 'revealing harem outfit', image: '/images/costumes/harem.jpg', isAdult: false },
     { name: 'strapless sleeveless cotton tube top', image: '/images/costumes/top.jpg', isAdult: false },
     { name: 'revealing night short chemise', image: '/images/costumes/chemise.jpg', isAdult: false },
+    { name: 'revealing native american outfit', image: '/images/costumes/native.jpg', isAdult: false },
+    { name: 'unbuttoned sleeveless shirt,tied at front,short jeans shorts', image: '/images/costumes/shirtshorts.jpg', isAdult: false },
+    { name: 'fundoshi', image: '/images/costumes/fundoshi.jpg', isAdult: false },    
   ];
 
   const normalizedAnime = anime?.toLowerCase().replace(/\s+/g, '');
